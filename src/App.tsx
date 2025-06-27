@@ -30,7 +30,7 @@ function App() {
                   {/* Logo */}
                   <div className="flex items-center space-x-3">
                     <img
-                      src="../img/Logo.png"
+                      src="../img/Logo.svg"
                       alt="SenaCloud"
                       className="h-10 w-auto"
                     />
@@ -474,7 +474,7 @@ function App() {
                   <div className="flex flex-col md:flex-row items-center justify-between mt-12 pt-8 border-t border-white/20">
                     <div className="flex items-center mb-4 md:mb-0">
                       <img
-                        src="../img/Logo.png"
+                        src="../img/Logo.svg"
                         alt="SenaCloud"
                         className="h-10 w-auto mr-4 drop-shadow-glow animate-glow"
                       />
