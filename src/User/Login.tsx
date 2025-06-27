@@ -32,8 +32,8 @@ export default function Login() {
   return (
     <div className="relative min-h-screen flex items-center justify-center bg-white overflow-hidden">
       {/* Logo en la esquina superior izquierda */}
-      <Link to="/" className="absolute top-6 left-6 h-20 w-17 z-30 block">
-        <img src={Logo} alt="SenaCloud" className="h-20 w-17" />
+      <Link to="/" className="absolute top-4 left-4 h-16 sm:h-20 w-14 sm:w-17 z-30 block">
+        <img src={Logo} alt="SenaCloud" className="h-full w-full" />
       </Link>
       <div className="relative z-10 flex items-center justify-start w-full max-w-7xl mx-auto min-h-[600px]">
         {/* Contenedor del login, más a la izquierda */}
@@ -104,4 +104,4 @@ export default function Login() {
       </div>
     </div>
   );
-} 
+}
