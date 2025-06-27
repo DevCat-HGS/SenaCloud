@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import "./index.css";
-import { Routes, Route, Link, Router } from "react-router-dom";
+import { Routes, Route, Link, Router, useNavigate } from "react-router-dom";
 import Login from "./User/Login";
 import Register from "./User/Register";
 import Admin from './Admin/Dashboard.tsx';
@@ -8,12 +8,32 @@ import DashboardPage from './Admin/routes/dashboard/page';
 import { Usuarios } from './Admin/components/Usuarios';
 import { Actividades } from './Admin/components/Actividades';
 import { Eventos } from './Admin/components/Eventos';
+import AntiMovil from './AntiMovil';
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      const mobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      setIsMobile(mobile);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  if (isMobile && window.location.pathname !== '/mobile') {
+    window.location.href = '/mobile';
+    return null;
+  }
 
   return (
     <Routes>
+      <Route path="/mobile" element={<AntiMovil />} />
       <Route
         path="/"
         element={
@@ -46,7 +66,7 @@ function App() {
                   <nav className="hidden lg:flex items-center space-x-8">
                     <div className="relative group">
                       <button className="flex items-center text-gray-700 hover:text-blue-600 font-medium transition-colors">
-                        Producto
+                        Funcionalidades
                         <svg className="w-4 h-4 ml-1 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                         </svg>
@@ -55,7 +75,7 @@ function App() {
 
                     <div className="relative group">
                       <button className="flex items-center text-gray-700 hover:text-blue-600 font-medium transition-colors">
-                        Soluciones
+                        Eventos
                         <svg className="w-4 h-4 ml-1 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                         </svg>
@@ -64,7 +84,7 @@ function App() {
 
                     <div className="relative group">
                       <button className="flex items-center text-gray-700 hover:text-blue-600 font-medium transition-colors">
-                        Recursos
+                        Gestion de Ambientes
                         <svg className="w-4 h-4 ml-1 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                         </svg>
@@ -72,7 +92,7 @@ function App() {
                     </div>
 
                     <a href="#" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
-                      Precios
+                      Donaciones
                     </a>
                   </nav>
 
@@ -121,13 +141,13 @@ function App() {
                 <div className="text-center">
                   {/* Main Heading */}
                   <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-8 leading-tight">
-                    La innovación <br />
-                    <span className="text-green-600">redefinida</span>
+                  Gestión de cronogramas para <br />
+                    <span className="text-green-600">Funcionarios SENA</span>
                   </h1>
 
                   {/* Subtitle */}
                   <p className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
-                    Conoce el espacio de innovación, la plataforma de colaboración impulsada por IA que ayuda a tu equipo a crear el producto correcto más rápido.
+                  Optimiza la planificación académica del CTPGA con una plataforma web intuitiva, segura y en la nube. Centraliza, automatiza y mejora la coordinación entre instructores y administrativos.
                   </p>
 
                   {/* Video Placeholder */}
@@ -159,7 +179,7 @@ function App() {
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-12">
                   <p className="text-gray-600 text-lg">
-                    Unidos por la innovación y el crecimiento digital.
+                  Desarrollado para mejorar la calidad educativa mediante innovación digital.
                   </p>
                 </div>
 
@@ -195,13 +215,14 @@ function App() {
                     <div className="mb-6">
                       <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
                         <svg className="w-8 h-8 text-green-600" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M3 3h18v18H3V3zm16 16V5H5v14h14zM7 7h10v2H7V7zm0 4h10v2H7v-2zm0 4h7v2H7v-2z"/>
+                          <path d="M3 3h18v18H3V3zm16 16V5H5v14h14zM7 7h10v2H7V7zm0 4h10v2H7v-2zm0 4h7v2H7v-2zm0 4h7v2H7v-2z"/>
                         </svg>
                       </div>
                     </div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4">El lienzo inteligente</h3>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Gestión centralizada de cronogramas
+                    </h3>
                     <p className="text-gray-600 mb-6 leading-relaxed">
-                      Las grandes ideas merecen espacio para crecer. Nuestro lienzo ilimitado le permite a tu equipo crear y construir en conjunto, desde el primer "¿Qué pasaría si...?" hasta el último "¡Wow!".
+                    Organiza los horarios trimestrales de manera sencilla, en una única plataforma.
                     </p>
                     <a href="#" className="text-green-600 hover:text-green-700 font-medium">Más información →</a>
                   </div>
@@ -217,7 +238,7 @@ function App() {
                     </div>
                     <h3 className="text-xl font-semibold text-gray-900 mb-4">Hecho a la medida para adaptarse a tus necesidades</h3>
                     <p className="text-gray-600 mb-6 leading-relaxed">
-                      Realiza cualquier proyecto con plantillas paso a paso que transforman flujos de trabajo desordenados e improvisados en flujos de trabajo fluidos.
+                      Realiza cualquier actividad u competencia con plantillas paso a paso que transforman cronogramas de trabajo desordenados e improvisados en flujos de trabajo fluidos.
                     </p>
                     <a href="#" className="text-green-600 hover:text-green-700 font-medium">Más información →</a>
                   </div>
@@ -233,7 +254,7 @@ function App() {
                     </div>
                     <h3 className="text-xl font-semibold text-gray-900 mb-4">Velocidad pura, sin trabas</h3>
                     <p className="text-gray-600 mb-6 leading-relaxed">
-                      Concéntrate en lo que importa con formatos sin distracciones, como documentos, tablas de datos, cronogramas y diapositivas.
+                      Concéntrate en lo que importa, Consulta y genera informes instantáneamente, listos para imprimir o exportar.
                     </p>
                     <a href="#" className="text-green-600 hover:text-green-700 font-medium">Más información →</a>
                   </div>
@@ -430,7 +451,7 @@ function App() {
                   <div className="text-center mb-12">
                     <h2 className="text-3xl md:text-4xl font-bold mb-6 drop-shadow-lg animate-fade-in">Por qué los equipos innovan en SenaCloud</h2>
                     <a
-                      href="#"
+                      href="/register"
                       className="bg-green-500 text-white px-8 py-3 rounded-full font-bold shadow-lg hover:bg-green-400 transition-all duration-300 animate-glow focus:outline-none focus:ring-4 focus:ring-green-300"
                     >
                       Regístrate gratis
@@ -483,7 +504,7 @@ function App() {
                         alt="SenaCloud"
                         className="h-10 w-auto mr-4 drop-shadow-glow animate-glow"
                       />
-                      <span className="text-white/80 font-semibold">© 2025 SenaCloud</span>
+                      <span className="text-white/80 font-semibold">© 2025 SenaCloud – Proyecto académico del SENA</span>
                     </div>
                     <div className="flex space-x-6">
                       <a href="#" className="text-white/70 hover:text-white transition-colors">
