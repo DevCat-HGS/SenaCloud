@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import "./index.css";
-import { Routes, Route, Link, Router, useNavigate } from "react-router-dom";
+import { Routes, Route, Link, Router } from "react-router-dom";
 import Login from "./User/Login";
 import Register from "./User/Register";
 import Admin from './Admin/Dashboard.tsx';
@@ -8,32 +8,12 @@ import DashboardPage from './Admin/routes/dashboard/page';
 import { Usuarios } from './Admin/components/Usuarios';
 import { Actividades } from './Admin/components/Actividades';
 import { Eventos } from './Admin/components/Eventos';
-import AntiMovil from './AntiMovil';
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => {
-      const mobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-      setIsMobile(mobile);
-    };
-
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
-  if (isMobile && window.location.pathname !== '/mobile') {
-    window.location.href = '/mobile';
-    return null;
-  }
 
   return (
     <Routes>
-      <Route path="/mobile" element={<AntiMovil />} />
       <Route
         path="/"
         element={
@@ -103,9 +83,9 @@ function App() {
                     </Link>
                     <Link
                       to="/register"
-                      className="bg-green-500 text-white px-8 py-3 rounded-full font-bold shadow-lg hover:bg-green-400 transition-all duration-300 animate-glow focus:outline-none focus:ring-4 focus:ring-green-300"
+                      className={`bg-green-500 text-white px-1 sm:px-8 py-2 sm:py-3 text-sm sm:text-base rounded-full font-bold shadow-lg hover:bg-green-400 transition-all duration-300 animate-glow focus:outline-none focus:ring-4 focus:ring-green-300 ${isMenuOpen ? 'hidden' : ''}`}
                     >
-                      Regístrate gratis
+                      Regístrate
                     </Link>
 
                     {/* Mobile menu button */}
@@ -122,7 +102,15 @@ function App() {
 
                 {/* Mobile Menu */}
                 {isMenuOpen && (
-                  <div className="lg:hidden py-4 border-t border-gray-100">
+                  <div className="lg:hidden py-4 border-t border-gray-100 relative">
+                    <button
+                      className="absolute top-2 right-2 p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
                     <div className="space-y-4">
                       <a href="#" className="block text-gray-700 hover:text-blue-600 font-medium">Producto</a>
                       <a href="#" className="block text-gray-700 hover:text-blue-600 font-medium">Soluciones</a>
@@ -215,7 +203,7 @@ function App() {
                     <div className="mb-6">
                       <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
                         <svg className="w-8 h-8 text-green-600" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M3 3h18v18H3V3zm16 16V5H5v14h14zM7 7h10v2H7V7zm0 4h10v2H7v-2zm0 4h7v2H7v-2zm0 4h7v2H7v-2z"/>
+                          <path d="M3 3h18v18H3V3zm16 16V5H5v14h14zM7 7h10v2H7V7zm0 4h10v2H7v-2zm0 4h7v2H7v-2z"/>
                         </svg>
                       </div>
                     </div>
@@ -454,7 +442,7 @@ function App() {
                       href="/register"
                       className="bg-green-500 text-white px-8 py-3 rounded-full font-bold shadow-lg hover:bg-green-400 transition-all duration-300 animate-glow focus:outline-none focus:ring-4 focus:ring-green-300"
                     >
-                      Regístrate gratis
+                      Regístrate
                     </a>
                   </div>
 
@@ -504,7 +492,7 @@ function App() {
                         alt="SenaCloud"
                         className="h-10 w-auto mr-4 drop-shadow-glow animate-glow"
                       />
-                      <span className="text-white/80 font-semibold">© 2025 SenaCloud – Proyecto académico del SENA</span>
+                      <span className="text-white/80 font-semibold">© 2025 SenaCloud</span>
                     </div>
                     <div className="flex space-x-6">
                       <a href="#" className="text-white/70 hover:text-white transition-colors">
