@@ -34,7 +34,9 @@ export default function Register() {
   return (
     <div className="relative min-h-screen flex items-center justify-center bg-white overflow-hidden">
       {/* Logo en la esquina superior izquierda */}
-      <img src={Logo} alt="SenaCloud" className="absolute top-6 left-6 h-20 w-17 z-30 " />
+      <Link to="/" className="absolute top-6 left-6 h-20 w-17 z-30 block">
+        <img src={Logo} alt="SenaCloud" className="h-20 w-17" />
+      </Link>
       <div className="relative z-10 flex items-center justify-end w-full max-w-7xl mx-auto min-h-[600px]">
         {/* Círculo de bienvenida, grande y a la izquierda, solo borde visible */}
         <div className="hidden md:block absolute left-[-350px] top-1/2 -translate-y-1/2 z-10">
