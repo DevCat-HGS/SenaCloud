@@ -152,12 +152,12 @@ const DashboardPage = () => {
                     <div className="card-body h-[300px] overflow-auto p-0">
                         {recentSalesData.map((sale) => (
                             <div
-                                key={sale.id}
+                                key={sale.email}
                                 className="flex items-center justify-between gap-x-4 py-2 pr-2"
                             >
                                 <div className="flex items-center gap-x-4">
                                     <img
-                                        src={sale.image}
+                                        src={sale.avatar}
                                         alt={sale.name}
                                         className="size-10 flex-shrink-0 rounded-full object-cover"
                                     />
@@ -166,7 +166,7 @@ const DashboardPage = () => {
                                         <p className="text-sm text-slate-600 dark:text-slate-400">{sale.email}</p>
                                     </div>
                                 </div>
-                                <p className="font-medium text-slate-900 dark:text-slate-50">${sale.total}</p>
+                                <p className="font-medium text-slate-900 dark:text-slate-50">${sale.amount}</p>
                             </div>
                         ))}
                     </div>
@@ -192,10 +192,10 @@ const DashboardPage = () => {
                             <tbody className="table-body">
                                 {topProducts.map((product) => (
                                     <tr
-                                        key={product.number}
+                                        key={product.name}
                                         className="table-row"
                                     >
-                                        <td className="table-cell">{product.number}</td>
+                                        <td className="table-cell">{topProducts.indexOf(product) + 1}</td>
                                         <td className="table-cell">
                                             <div className="flex w-max gap-x-4">
                                                 <img
@@ -210,14 +210,14 @@ const DashboardPage = () => {
                                             </div>
                                         </td>
                                         <td className="table-cell">${product.price}</td>
-                                        <td className="table-cell">{product.status}</td>
+                                        <td className="table-cell">Pending</td>
                                         <td className="table-cell">
                                             <div className="flex items-center gap-x-2">
                                                 <Star
                                                     size={18}
                                                     className="fill-yellow-600 stroke-yellow-600"
                                                 />
-                                                {product.rating}
+                                                {(product as { rating?: number }).rating || 0}
                                             </div>
                                         </td>
                                         <td className="table-cell">
