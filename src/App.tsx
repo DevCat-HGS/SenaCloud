@@ -39,7 +39,7 @@ function App() {
                       alt="SenaCloud"
                       className="h-10 w-auto"
                     />
-                    <span className="text-2xl font-bold text-gray-800 tracking-tight">SenaCloud</span>
+                  <span className="text-2xl md:text-lg sm:text-base font-bold text-gray-800 tracking-tight">SenaCloud</span>
                   </div>
 
                   {/* Navigation */}
