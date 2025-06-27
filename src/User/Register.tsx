@@ -28,7 +28,7 @@ export default function Register() {
   };
 
   const handleConfirm = () => {
-    window.location.href = '/#';
+    window.location.href = '/Admin';
   };
 
   return (
@@ -57,7 +57,7 @@ export default function Register() {
           </div>
         </div>
         {/* Contenedor del registro, ahora a la derecha */}
-        <div className="w-full max-w-md bg-white rounded-3xl shadow-2xl border border-white/40 p-10 flex flex-col items-center mr-0 md:mr-12 animate-fade-in-up relative z-20">
+        <div className="w-full max-w-md bg-white rounded-3xl shadow-2xl border border-green-500 p-10 flex flex-col items-center mr-0 md:mr-12 animate-fade-in-up relative z-20">
           <h2 className="text-3xl font-extrabold mb-6 text-center text-green-700 drop-shadow-lg tracking-tight">Registro SenaCloud</h2>
           <form onSubmit={handleSubmit} className="w-full flex flex-col items-center">
             <div className="mb-4 w-full">

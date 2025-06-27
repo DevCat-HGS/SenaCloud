@@ -1,8 +1,13 @@
 import { useState } from 'react';
 import "./index.css";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link, Router } from "react-router-dom";
 import Login from "./User/Login";
 import Register from "./User/Register";
+import Admin from './Admin/Dashboard.tsx';
+import DashboardPage from './Admin/routes/dashboard/page';
+import { Usuarios } from './Admin/components/Usuarios';
+import { Actividades } from './Admin/components/Actividades';
+import { Eventos } from './Admin/components/Eventos';
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -24,7 +29,7 @@ function App() {
             </div>
 
             {/* Header */}
-            <header className="bg-white border-b border-gray-100 sticky top-5 z-100 rounded-2xl shadow-lg transition-all mx-4 shadow-[0_0_0_4px_rgba(34,197,94,0.3)]">
+            <header className="bg-white border-4 border-green-200 sticky top-5 z-100 rounded-2xl shadow-lg transition-all mx-4">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16">
                   {/* Logo */}
@@ -257,7 +262,7 @@ function App() {
                   <div className="relative">
                     <img
                       src="https://ext.same-assets.com/1314049128/2613054992.webp"
-                      alt="Miro AI Features"
+                      alt="SenaCloud AI Features"
                       className="w-full rounded-2xl shadow-2xl"
                     />
                   </div>
@@ -506,6 +511,23 @@ function App() {
       />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/Admin" element={<Admin />}>
+        <Route index element={<DashboardPage />} />
+        <Route path="analisis" element={<h1 className="title">Análisis</h1>} />
+        <Route path="reportes">
+          <Route path="pdf" element={<h1 className="title">Reportes PDF</h1>} />
+          <Route path="excel" element={<h1 className="title">Reportes Excel</h1>} />
+        </Route>
+        <Route path="usuarios">
+          <Route path="instructores" element={<Usuarios tipo="instructores" />} />
+          <Route path="coordinadores" element={<Usuarios tipo="coordinadores" />} />
+          <Route path="equipo-pedagogico" element={<Usuarios tipo="equipoPedagogico" />} />
+          <Route path="administradores" element={<Usuarios tipo="administradores" />} />
+        </Route>
+        <Route path="actividades" element={<Actividades />} />
+        <Route path="eventos" element={<Eventos />} />
+        <Route path="ajustes" element={<h1 className="title">Ajustes</h1>} />
+      </Route>
     </Routes>
   );
 }

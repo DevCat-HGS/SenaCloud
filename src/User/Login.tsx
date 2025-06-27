@@ -26,7 +26,7 @@ export default function Login() {
   };
 
   const handleConfirm = () => {
-    window.location.href = '/#';
+    window.location.href = '/Admin';
   };
 
   return (
@@ -37,7 +37,7 @@ export default function Login() {
       </Link>
       <div className="relative z-10 flex items-center justify-start w-full max-w-7xl mx-auto min-h-[600px]">
         {/* Contenedor del login, más a la izquierda */}
-        <div className="w-full max-w-md bg-white rounded-3xl shadow-2xl border border-white/40 p-10 flex flex-col items-center ml-0 md:ml-12 animate-fade-in-up relative z-20">
+        <div className="w-full max-w-md bg-white rounded-3xl shadow-2xl border border-green-500 p-10 flex flex-col items-center ml-0 md:ml-12 animate-fade-in-up relative z-20">
           <h2 className="text-3xl font-extrabold mb-6 text-center text-green-700 drop-shadow-lg tracking-tight">Iniciar Sesión</h2>
           <form onSubmit={handleSubmit} className="w-full flex flex-col items-center">
             <div className="mb-4 w-full">
