@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Cursor personalizado */
+* {
+  cursor: url('https://api-img-hgs.netlify.app/img/cursor.png'), auto !important;
+}
+
 /* Scroll Animation */
 @keyframes scroll {
   0% {
