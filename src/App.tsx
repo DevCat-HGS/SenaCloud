@@ -482,7 +482,7 @@ function App() {
                       <ul className="space-y-2 text-white/80">
                         <li><a href="#" className="hover:text-white transition-colors">Quienes somos</a></li>
                         <li><a href="#" className="hover:text-white transition-colors">Como Ingreso</a></li>
-                        <li><a href="#" className="hover:text-white transition-colors">Diseño del Softwaare</a></li>
+                        <li><a href="#" className="hover:text-white transition-colors">Diseño del Software</a></li>
                         <li><a href="#" className="hover:text-white transition-colors">Precio de Modelo</a></li>
                       </ul>
                     </div>

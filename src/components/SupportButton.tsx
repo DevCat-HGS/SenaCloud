@@ -22,7 +22,7 @@ const SupportButton = () => {
       </button>
 
       {isModalOpen && (
-        <div className="absolute bottom-20 right-0 w-72 bg-white rounded-lg shadow-xl border border-green-100 p-4">
+        <div className="absolute bottom-20 right-0 w-72 bg-white rounded-xl shadow-xl border border-green-100 p-4">
           <div className="text-center">
             <h3 className="text-lg font-semibold text-gray-800 mb-2">SenaCloud</h3>
             <p className="text-gray-600 text-sm mb-4">Tu asesor de soporte, tienes algun problema con nuestra plataforma</p>
