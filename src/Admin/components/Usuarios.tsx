@@ -96,7 +96,7 @@ export const Usuarios: React.FC<UsuariosProps> = ({ tipo }) => {
                 <h1 className="text-2xl font-bold text-gray-900">{getTitulo()}</h1>
                 <button
                     onClick={() => setIsModalOpen(true)}
-                    className="bg-blue-600 text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-blue-700"
+                    className="bg-green-600 text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-green-700"
                 >
                     <Plus size={20} />
                     Agregar {getTitulo().slice(0, -1)}
@@ -112,7 +112,7 @@ export const Usuarios: React.FC<UsuariosProps> = ({ tipo }) => {
                         placeholder="Buscar usuarios..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
                     />
                 </div>
             </div>
@@ -201,7 +201,7 @@ export const Usuarios: React.FC<UsuariosProps> = ({ tipo }) => {
                                         type="text"
                                         value={formData.nombre}
                                         onChange={(e) => setFormData({...formData, nombre: e.target.value})}
-                                        className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
                                         required
                                     />
                                 </div>
@@ -211,7 +211,7 @@ export const Usuarios: React.FC<UsuariosProps> = ({ tipo }) => {
                                         type="email"
                                         value={formData.email}
                                         onChange={(e) => setFormData({...formData, email: e.target.value})}
-                                        className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
                                         required
                                     />
                                 </div>
@@ -224,7 +224,7 @@ export const Usuarios: React.FC<UsuariosProps> = ({ tipo }) => {
                                             type="text"
                                             value={formData[campo as keyof typeof formData]}
                                             onChange={(e) => setFormData({...formData, [campo]: e.target.value})}
-                                            className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                            className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
                                         />
                                     </div>
                                 ))}
@@ -233,7 +233,7 @@ export const Usuarios: React.FC<UsuariosProps> = ({ tipo }) => {
                                     <select
                                         value={formData.estado}
                                         onChange={(e) => setFormData({...formData, estado: e.target.value})}
-                                        className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
                                     >
                                         <option value="Activo">Activo</option>
                                         <option value="Inactivo">Inactivo</option>
@@ -254,7 +254,7 @@ export const Usuarios: React.FC<UsuariosProps> = ({ tipo }) => {
                                 </button>
                                 <button
                                     type="submit"
-                                    className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+                                    className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700"
                                 >
                                     {editingUser ? 'Actualizar' : 'Crear'}
                                 </button>

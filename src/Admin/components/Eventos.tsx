@@ -59,7 +59,7 @@ export const Eventos: React.FC = () => {
 
     const getEstadoColor = (estado: string) => {
         switch (estado) {
-            case 'Programado': return 'bg-blue-100 text-blue-800';
+            case 'Programado': return 'bg-green-100 text-green-800';
             case 'En preparación': return 'bg-yellow-100 text-yellow-800';
             case 'En curso': return 'bg-green-100 text-green-800';
             case 'Cancelado': return 'bg-red-100 text-red-800';
@@ -73,7 +73,7 @@ export const Eventos: React.FC = () => {
                 <h1 className="text-2xl font-bold text-gray-900">Eventos</h1>
                 <button
                     onClick={() => setIsModalOpen(true)}
-                    className="bg-blue-600 text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-blue-700"
+                    className="bg-green-600 text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-green-700"
                 >
                     <Plus size={20} />
                     Agregar Evento
@@ -89,7 +89,7 @@ export const Eventos: React.FC = () => {
                         placeholder="Buscar eventos..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
                     />
                 </div>
             </div>
@@ -176,7 +176,7 @@ export const Eventos: React.FC = () => {
                                         type="text"
                                         value={formData.titulo}
                                         onChange={(e) => setFormData({...formData, titulo: e.target.value})}
-                                        className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
                                         required
                                     />
                                 </div>
@@ -186,7 +186,7 @@ export const Eventos: React.FC = () => {
                                         type="date"
                                         value={formData.fecha}
                                         onChange={(e) => setFormData({...formData, fecha: e.target.value})}
-                                        className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
                                         required
                                     />
                                 </div>
@@ -196,7 +196,7 @@ export const Eventos: React.FC = () => {
                                         type="text"
                                         value={formData.ubicacion}
                                         onChange={(e) => setFormData({...formData, ubicacion: e.target.value})}
-                                        className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
                                         required
                                     />
                                 </div>
@@ -205,7 +205,7 @@ export const Eventos: React.FC = () => {
                                     <select
                                         value={formData.estado}
                                         onChange={(e) => setFormData({...formData, estado: e.target.value})}
-                                        className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
                                     >
                                         <option value="Programado">Programado</option>
                                         <option value="En preparación">En preparación</option>
@@ -228,7 +228,7 @@ export const Eventos: React.FC = () => {
                                 </button>
                                 <button
                                     type="submit"
-                                    className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+                                    className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700"
                                 >
                                     {editingEvento ? 'Actualizar' : 'Crear'}
                                 </button>

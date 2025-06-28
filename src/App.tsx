@@ -47,7 +47,7 @@ function App() {
                   {/* Navigation */}
                   <nav className="hidden lg:flex items-center space-x-8">
                     <div className="relative group">
-                      <button className="flex items-center text-gray-700 hover:text-blue-600 font-medium transition-colors">
+                      <button className="flex items-center text-gray-700 hover:text-green-600 font-medium transition-colors">
                         Funcionalidades
                         <svg className="w-4 h-4 ml-1 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -56,7 +56,7 @@ function App() {
                     </div>
 
                     <div className="relative group">
-                      <button className="flex items-center text-gray-700 hover:text-blue-600 font-medium transition-colors">
+                      <button className="flex items-center text-gray-700 hover:text-green-600 font-medium transition-colors">
                         Eventos
                         <svg className="w-4 h-4 ml-1 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -65,7 +65,7 @@ function App() {
                     </div>
 
                     <div className="relative group">
-                      <button className="flex items-center text-gray-700 hover:text-blue-600 font-medium transition-colors">
+                      <button className="flex items-center text-gray-700 hover:text-green-600 font-medium transition-colors">
                         Gestion de Ambientes
                         <svg className="w-4 h-4 ml-1 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -73,14 +73,14 @@ function App() {
                       </button>
                     </div>
 
-                    <a href="#" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
+                    <a href="#" className="text-gray-700 hover:text-green-600 font-medium transition-colors">
                       Donaciones
                     </a>
                   </nav>
 
                   {/* Right Side Actions */}
                   <div className="flex items-center space-x-6">
-                    <Link to="/login" className="hidden md:block text-gray-700 hover:text-blue-600 font-medium transition-colors">
+                    <Link to="/login" className="hidden md:block text-gray-700 hover:text-green-600 font-medium transition-colors">
                       Iniciar sesión
                     </Link>
                     <Link
@@ -114,12 +114,12 @@ function App() {
                       </svg>
                     </button>
                     <div className="space-y-4">
-                      <a href="#" className="block text-gray-700 hover:text-blue-600 font-medium">Funcionalidades</a>
-                      <a href="#" className="block text-gray-700 hover:text-blue-600 font-medium">Eventos</a>
-                      <a href="#" className="block text-gray-700 hover:text-blue-600 font-medium">Gestion de Ambientes</a>
-                      <a href="#" className="block text-gray-700 hover:text-blue-600 font-medium">Donaciones</a>
-                      <Link to="/login" className="block text-gray-700 hover:text-blue-600 font-medium">Iniciar sesión</Link>
-                      <Link to="/register" className="block text-gray-700 hover:text-blue-600 font-medium">Registrarse</Link>
+                      <a href="#" className="block text-gray-700 hover:text-green-600 font-medium">Funcionalidades</a>
+                      <a href="#" className="block text-gray-700 hover:text-green-600 font-medium">Eventos</a>
+                      <a href="#" className="block text-gray-700 hover:text-green-600 font-medium">Gestion de Ambientes</a>
+                      <a href="#" className="block text-gray-700 hover:text-green-600 font-medium">Donaciones</a>
+                      <Link to="/login" className="block text-gray-700 hover:text-green-600 font-medium">Iniciar sesión</Link>
+                      <Link to="/register" className="block text-gray-700 hover:text-green-600 font-medium">Registrarse</Link>
                     </div>
                   </div>
                 )}
@@ -127,7 +127,7 @@ function App() {
             </header>
 
             {/* Hero Section */}
-            <section className="bg-gradient-to-b from-blue-50 to-white pt-16 pb-20">
+            <section className="bg-gradient-to-b from-green-50 to-white pt-16 pb-20">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center">
                   {/* Main Heading */}
@@ -151,7 +151,7 @@ function App() {
                       />
                       <div className="absolute inset-0 flex items-center justify-center">
                         <button className="bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full p-6 transition-all transform hover:scale-105">
-                          <svg className="w-8 h-8 text-blue-600 ml-1" fill="currentColor" viewBox="0 0 24 24">
+                          <svg className="w-8 h-8 text-green-600 ml-1" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M8 5v14l11-7z"/>
                           </svg>
                         </button>
@@ -204,8 +204,8 @@ function App() {
                   {/* Feature 1 */}
                   <div className="text-center">
                     <div className="mb-6">
-                      <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
-                        <svg className="w-8 h-8 text-green-600" fill="currentColor" viewBox="0 0 24 24">
+                      <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto">
+                        <svg className="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M3 3h18v18H3V3zm16 16V5H5v14h14zM7 7h10v2H7V7zm0 4h10v2H7v-2zm0 4h7v2H7v-2z"/>
                         </svg>
                       </div>
@@ -215,7 +215,7 @@ function App() {
                     <p className="text-gray-600 mb-6 leading-relaxed">
                     Organiza los horarios trimestrales de manera sencilla, en una única plataforma.
                     </p>
-                    <a href="#" className="text-green-600 hover:text-green-700 font-medium">Más información →</a>
+                    <a href="#" className="text-blue-600 hover:text-green-700 font-medium">Más información →</a>
                   </div>
 
                   {/* Feature 2 */}
@@ -237,8 +237,8 @@ function App() {
                   {/* Feature 3 */}
                   <div className="text-center">
                     <div className="mb-6">
-                      <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
-                        <svg className="w-8 h-8 text-green-600" fill="currentColor" viewBox="0 0 24 24">
+                      <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto">
+                        <svg className="w-8 h-8 text-yellow-600" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M13 3l3.86 5H21v2h-4.14L13 15 9.14 10H5V8h4.14L13 3zM7 19h10v2H7v-2z"/>
                         </svg>
                       </div>
@@ -247,7 +247,7 @@ function App() {
                     <p className="text-gray-600 mb-6 leading-relaxed">
                       Concéntrate en lo que importa, Consulta y genera informes instantáneamente, listos para imprimir o exportar.
                     </p>
-                    <a href="#" className="text-green-600 hover:text-green-700 font-medium">Más información →</a>
+                    <a href="#" className="text-yellow-600 hover:text-yellow-700 font-medium">Más información →</a>
                   </div>
                 </div>
               </div>
@@ -359,7 +359,7 @@ function App() {
                     <p className="text-gray-600 mb-6 leading-relaxed">
                       Una única plataforma para que los equipos de producto ofrezcan valor al cliente más rápido. Todo está aquí: desde la planificación estratégica hasta la creación de roadmaps.
                     </p>
-                    <a href="#" className="text-green-600 hover:text-green-700 font-medium">Más información →</a>
+                    <a href="#" className="text-blue-600 hover:text-green-700 font-medium">Más información →</a>
                   </div>
 
                   {/* UX Design */}
@@ -387,7 +387,7 @@ function App() {
                     <p className="text-gray-600 mb-6 leading-relaxed">
                       Un espacio de trabajo central donde los ingenieros y los socios se alinean y logran soluciones de manera más eficiente.
                     </p>
-                    <a href="#" className="text-green-600 hover:text-green-700 font-medium">Más información →</a>
+                    <a href="#" className="text-purple-600 hover:text-purple-700 font-medium">Más información →</a>
                   </div>
 
                   {/* Project Management */}
@@ -401,7 +401,7 @@ function App() {
                     <p className="text-gray-600 mb-6 leading-relaxed">
                       Permite que los programas se desarrollen mediante una colaboración sin interrupciones en un espacio de trabajo compartido.
                     </p>
-                    <a href="#" className="text-green-600 hover:text-green-700 font-medium">Más información →</a>
+                    <a href="#" className="text-orange-600 hover:text-orange-700 font-medium">Más información →</a>
                   </div>
 
                   {/* Marketing */}
@@ -415,7 +415,7 @@ function App() {
                     <p className="text-gray-600 mb-6 leading-relaxed">
                       Este es el espacio de trabajo que les permite a los expertos en marketing agilizar la planificación de campañas y la ejecución.
                     </p>
-                    <a href="#" className="text-green-600 hover:text-green-700 font-medium">Más información →</a>
+                    <a href="#" className="text-pink-600 hover:text-pink-700 font-medium">Más información →</a>
                   </div>
 
                   {/* IT */}
@@ -429,7 +429,7 @@ function App() {
                     <p className="text-gray-600 mb-6 leading-relaxed">
                       Toma decisiones colaborativas al instante, informa a las partes interesadas y simplifica lo complejo.
                     </p>
-                    <a href="#" className="text-green-600 hover:text-green-700 font-medium">Más información →</a>
+                    <a href="#" className="text-indigo-600 hover:text-indigo-700 font-medium">Más información →</a>
                   </div>
                 </div>
               </div>
