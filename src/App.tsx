@@ -177,15 +177,55 @@ function App() {
                 {/* Logo Marquee */}
                 <div className="relative overflow-hidden">
                   <div className="flex animate-scroll space-x-16 items-center">
-                    <img src="https://ext.same-assets.com/1314049128/4290621811.svg" alt="Comcast" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
-                    <img src="https://ext.same-assets.com/1314049128/3706100782.svg" alt="Danaher" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
-                    <img src="https://ext.same-assets.com/1314049128/1685409409.svg" alt="Dropbox" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
-                    <img src="https://ext.same-assets.com/1314049128/1075099755.svg" alt="Publix" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
-                    <img src="https://ext.same-assets.com/1314049128/2353366517.svg" alt="Slalom" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
-                    {/* Duplicate for seamless scroll */}
-                    <img src="https://ext.same-assets.com/1314049128/4290621811.svg" alt="Comcast" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
-                    <img src="https://ext.same-assets.com/1314049128/3706100782.svg" alt="Danaher" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
-                    <img src="https://ext.same-assets.com/1314049128/1685409409.svg" alt="Dropbox" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
+                    <img src="https://api-img-hgs.netlify.app/img/Sennova.png" alt="Senova" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
+                    <img src="https://api-img-hgs.netlify.app/img/sena-negro.png" alt="Sena" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
+                    <img src="https://api-img-hgs.netlify.app/img/sena-verde.png" alt="Sena" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
+                    <img src="https://api-img-hgs.netlify.app/img/senacloud-logo.png" alt="SenaCloud" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
+                    <img src="https://api-img-hgs.netlify.app/img/Sennova.png" alt="Senova" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
+                    <img src="https://api-img-hgs.netlify.app/img/sena-negro.png" alt="Sena" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
+                    <img src="https://api-img-hgs.netlify.app/img/sena-verde.png" alt="Sena" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
+                    <img src="https://api-img-hgs.netlify.app/img/senacloud-logo.png" alt="SenaCloud" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
+                    <img src="https://api-img-hgs.netlify.app/img/Sennova.png" alt="Senova" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
+                    <img src="https://api-img-hgs.netlify.app/img/sena-negro.png" alt="Sena" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
+                    <img src="https://api-img-hgs.netlify.app/img/sena-verde.png" alt="Sena" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
+                    <img src="https://api-img-hgs.netlify.app/img/senacloud-logo.png" alt="SenaCloud" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
+                    <img src="https://api-img-hgs.netlify.app/img/Sennova.png" alt="Senova" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
+                    <img src="https://api-img-hgs.netlify.app/img/sena-negro.png" alt="Sena" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
+                    <img src="https://api-img-hgs.netlify.app/img/sena-verde.png" alt="Sena" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
+                    <img src="https://api-img-hgs.netlify.app/img/senacloud-logo.png" alt="SenaCloud" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
+                    <img src="https://api-img-hgs.netlify.app/img/Sennova.png" alt="Senova" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
+                    <img src="https://api-img-hgs.netlify.app/img/sena-negro.png" alt="Sena" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
+                    <img src="https://api-img-hgs.netlify.app/img/sena-verde.png" alt="Sena" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
+                    <img src="https://api-img-hgs.netlify.app/img/senacloud-logo.png" alt="SenaCloud" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
+                    <img src="https://api-img-hgs.netlify.app/img/Sennova.png" alt="Senova" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
+                    <img src="https://api-img-hgs.netlify.app/img/sena-negro.png" alt="Sena" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
+                    <img src="https://api-img-hgs.netlify.app/img/sena-verde.png" alt="Sena" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
+                    <img src="https://api-img-hgs.netlify.app/img/senacloud-logo.png" alt="SenaCloud" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
+                    <img src="https://api-img-hgs.netlify.app/img/Sennova.png" alt="Senova" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
+                    <img src="https://api-img-hgs.netlify.app/img/sena-negro.png" alt="Sena" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
+                    <img src="https://api-img-hgs.netlify.app/img/sena-verde.png" alt="Sena" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
+                    <img src="https://api-img-hgs.netlify.app/img/senacloud-logo.png" alt="SenaCloud" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
+                    <img src="https://api-img-hgs.netlify.app/img/Sennova.png" alt="Senova" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
+                    <img src="https://api-img-hgs.netlify.app/img/sena-negro.png" alt="Sena" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
+                    <img src="https://api-img-hgs.netlify.app/img/sena-verde.png" alt="Sena" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
+                    <img src="https://api-img-hgs.netlify.app/img/senacloud-logo.png" alt="SenaCloud" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
+                    <img src="https://api-img-hgs.netlify.app/img/Sennova.png" alt="Senova" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
+                    <img src="https://api-img-hgs.netlify.app/img/sena-negro.png" alt="Sena" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
+                    <img src="https://api-img-hgs.netlify.app/img/sena-verde.png" alt="Sena" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
+                    <img src="https://api-img-hgs.netlify.app/img/senacloud-logo.png" alt="SenaCloud" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
+                    <img src="https://api-img-hgs.netlify.app/img/Sennova.png" alt="Senova" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
+                    <img src="https://api-img-hgs.netlify.app/img/sena-negro.png" alt="Sena" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
+                    <img src="https://api-img-hgs.netlify.app/img/sena-verde.png" alt="Sena" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
+                    <img src="https://api-img-hgs.netlify.app/img/senacloud-logo.png" alt="SenaCloud" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
+                    <img src="https://api-img-hgs.netlify.app/img/Sennova.png" alt="Senova" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
+                    <img src="https://api-img-hgs.netlify.app/img/sena-negro.png" alt="Sena" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
+                    <img src="https://api-img-hgs.netlify.app/img/sena-verde.png" alt="Sena" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
+                    <img src="https://api-img-hgs.netlify.app/img/senacloud-logo.png" alt="SenaCloud" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
+                    <img src="https://api-img-hgs.netlify.app/img/Sennova.png" alt="Senova" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
+                    <img src="https://api-img-hgs.netlify.app/img/sena-negro.png" alt="Sena" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
+                    <img src="https://api-img-hgs.netlify.app/img/sena-verde.png" alt="Sena" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
+                    <img src="https://api-img-hgs.netlify.app/img/senacloud-logo.png" alt="SenaCloud" className="h-8 opacity-60 hover:opacity-100 transition-opacity" />
+                    
                   </div>
                 </div>
               </div>
