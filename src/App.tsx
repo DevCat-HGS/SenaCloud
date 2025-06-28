@@ -8,6 +8,7 @@ import DashboardPage from './Admin/routes/dashboard/page';
 import { Usuarios } from './Admin/components/Usuarios';
 import { Actividades } from './Admin/components/Actividades';
 import { Eventos } from './Admin/components/Eventos';
+import SupportButton from './components/SupportButton';
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -17,7 +18,8 @@ function App() {
       <Route
         path="/"
         element={
-          <div className="min-h-screen bg-white">
+          <div className="min-h-screen bg-white relative">
+            <SupportButton />
             {/* Top Banner */}
             <div className="bg-gray-50 border-b border-gray-200">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 text-center">
