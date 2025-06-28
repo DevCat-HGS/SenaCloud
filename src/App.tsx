@@ -21,10 +21,10 @@ function App() {
           <div className="min-h-screen bg-white relative">
             <SupportButton />
             {/* Top Banner */}
-            <div className="bg-gray-50 border-b border-gray-200">
+            <div className="bg-yellow-300 border-b border-gray-200">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 text-center">
-                <p className="text-sm text-gray-700">
-                  SenaCloud se encuentra aun en desarrollo, Se estan trabajando en la primera version de la plataforma{' '}
+                <p className="text-sm text-gray-900">
+                  SenaCloud se encuentra aun en desarrollo, Se estan trabajando en la primera version de la plataforma, se Estima un Lanzamiento en{' '}
                   <strong>22 de octubre de 2025</strong> - Registrate para estar al tanto de las actualizaciones
                 </p>
               </div>
