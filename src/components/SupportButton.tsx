@@ -25,7 +25,7 @@ const SupportButton = () => {
         <div className="absolute bottom-20 right-0 w-72 bg-white rounded-xl shadow-xl border border-green-100 p-4">
           <div className="text-center">
             <h3 className="text-lg font-semibold text-gray-800 mb-2">SenaCloud</h3>
-            <p className="text-gray-600 text-sm mb-4">Tu asesor de soporte, tienes algun problema con nuestra plataforma</p>
+            <p className="text-gray-600 text-sm mb-4">Somos Soporte SenaCloud, tienes algun problema con nuestra plataforma</p>
             <button
               onClick={handleContactClick}
               className="w-full bg-green-500 text-white py-2 px-4 rounded-full font-medium hover:bg-green-600 transition-colors duration-200"
