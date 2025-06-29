@@ -299,7 +299,7 @@ function App() {
                 <div className="grid lg:grid-cols-2 gap-16 items-center">
                   <div>
                     <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                      Acelera tu trabajo y obtén mejores resultados con <span className="text-green-600">SenaCloud AI</span>
+                      Acelera tu trabajo y obtén mejores resultados con <span className="text-green-600">SenaCloud IA</span>
                     </h2>
                     <p className="text-lg text-gray-600 mb-8 leading-relaxed">
                       Libera los superpoderes de la IA en tu lienzo. Completa rápidamente tareas aburridas, como mantenerte al tanto de actualizaciones o comentarios, con resúmenes automáticos. Convierte lluvias de ideas en diagramas refinados o resúmenes de proyectos claros en segundos.
