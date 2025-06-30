@@ -15,7 +15,7 @@ export const Header = ({ collapsed, setCollapsed }: HeaderProps) => {
     const { theme, setTheme } = useTheme();
 
     return (
-        <header className="relative z-10 flex h-[60px] items-center justify-between bg-white px-4 shadow-md transition-colors dark:bg-slate-900">
+        <header className="relative z-10 flex h-[60px] items-center justify-between bg-white px-4 shadow-md transition-colors dark:bg-slate-900 mt-2 mb-2 mx-4 rounded-2xl border-2 border-green-500 dark:border-green-600">
             <div className="flex items-center gap-x-3">
                 <button
                     className="btn-ghost size-10"
@@ -23,10 +23,10 @@ export const Header = ({ collapsed, setCollapsed }: HeaderProps) => {
                 >
                     <ChevronsLeft className={collapsed ? "rotate-180" : ""} />
                 </button>
-                <div className="input">
+                <div className="input rounded-2xl">
                     <Search
                         size={20}
-                        className="text-slate-300"
+                        className="text-slate-300 "
                     />
                     <input
                         type="text"
@@ -38,7 +38,7 @@ export const Header = ({ collapsed, setCollapsed }: HeaderProps) => {
                 </div>
             </div>
             <div className="flex items-center gap-x-3">
-                <button
+                {/* <button
                     className="btn-ghost size-10"
                     onClick={() => setTheme(theme === "light" ? "dark" : "light")}
                 >
@@ -50,8 +50,8 @@ export const Header = ({ collapsed, setCollapsed }: HeaderProps) => {
                         size={20}
                         className="hidden dark:block"
                     />
-                </button>
-                <button className="btn-ghost size-10">
+                </button> */}
+                <button className="btn-ghost rounded-2xl size-10">
                     <Bell size={20} />
                 </button>
                 <button className="size-10 overflow-hidden rounded-full">

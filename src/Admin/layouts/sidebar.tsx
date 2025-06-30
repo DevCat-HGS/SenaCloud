@@ -19,36 +19,31 @@ export const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(({ collapsed }, 
         <aside
             ref={ref}
             className={cn(
-                "fixed z-[100] flex h-full w-[240px] flex-col overflow-x-hidden border-r border-slate-300 bg-white [transition:_width_300ms_cubic-bezier(0.4,_0,_0.2,_1),_left_300ms_cubic-bezier(0.4,_0,_0.2,_1),_background-color_150ms_cubic-bezier(0.4,_0,_0.2,_1),_border_150ms_cubic-bezier(0.4,_0,_0.2,_1)] dark:border-slate-700 dark:bg-slate-900",
+                "fixed z-[100] flex h-full w-[240px] flex-col overflow-x-hidden border-2 border-green-500 bg-white rounded-2xl mt-0 mb-0 mx-4 dark:border-green-600 dark:bg-slate-900",
                 collapsed ? "md:w-[70px] md:items-center" : "md:w-[240px]",
                 collapsed ? "max-md:-left-full" : "max-md:left-0",
             )}
         >
-            <div className="flex gap-x-3 p-3">
+            <div className="flex gap-x-3 p-3 rounded-xl bg-white dark:bg-slate-900">
                 <img
-                    src={logoLight}
-                    alt="Logoipsum"
-                    className="dark:hidden"
+                    src="https://api-img-hgs.netlify.app/img/senacloud-logo.svg"
+                    alt="SenaCloud"
+                    className="w-8 h-8"
                 />
-                <img
-                    src={logoDark}
-                    alt="Logoipsum"
-                    className="hidden dark:block"
-                />
-                {!collapsed && <p className="text-lg font-medium text-slate-900 transition-colors dark:text-slate-50">Logoipsum</p>}
+                {!collapsed && <p className="text-lg font-medium text-slate-900 transition-colors dark:text-slate-50">SenaCloud</p>}
             </div>
             <div className="flex w-full flex-col gap-y-4 overflow-y-auto overflow-x-hidden p-3 [scrollbar-width:_thin]">
                 {navbarLinks.map((navbarLink) => (
                     <nav
                         key={navbarLink.title}
-                        className={cn("sidebar-group", collapsed && "md:items-center")}
+                        className={cn("sidebar-group rounded-lg", collapsed && "md:items-center")}
                     >
                         <p className={cn("sidebar-group-title", collapsed && "md:w-[45px]")}>{navbarLink.title}</p>
                         {navbarLink.links.map((link) => (
                             <NavLink
                                 key={link.label}
                                 to={link.path}
-                                className={cn("sidebar-item", collapsed && "md:w-[45px]")}
+                                className={cn("sidebar-item rounded-lg", collapsed && "md:w-[45px]")}
                             >
                                 <link.icon
                                     size={22}
