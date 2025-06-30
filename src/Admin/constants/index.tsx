@@ -265,4 +265,16 @@ export const eventosData = [
     { id: 3, titulo: "Demo Day", fecha: "2024-03-15", ubicacion: "Plaza Central", estado: "Programado" },
 ];
 
+export const eventosPasados = [
+    { id: 1, titulo: "Feria de Innovación 2023", fecha: "2023-11-20", ubicacion: "Auditorio Principal", estado: "Realizado" },
+    { id: 2, titulo: "Semana TIC", fecha: "2023-10-10", ubicacion: "Sala de Conferencias", estado: "Finalizado" },
+    { id: 3, titulo: "Expo Proyectos SenaCloud", fecha: "2023-09-05", ubicacion: "Plaza Central", estado: "Finalizado" },
+];
+
+export const proximosEventos = [
+    { id: 1, titulo: "Hackathon SenaCloud 2024", fecha: "2024-07-15", ubicacion: "Sala de Innovación", estado: "Programado" },
+    { id: 2, titulo: "Demo Day Institucional", fecha: "2024-08-01", ubicacion: "Auditorio Principal", estado: "En preparación" },
+    { id: 3, titulo: "Foro de Educación Digital", fecha: "2024-09-10", ubicacion: "Aula Magna", estado: "Programado" },
+];
+
 

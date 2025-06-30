@@ -33,7 +33,7 @@ export default function Login() {
     <div className="relative min-h-screen flex items-center justify-center bg-white overflow-hidden">
       {/* Logo en la esquina superior izquierda */}
       <Link to="/" className="absolute top-4 left-4 h-16 sm:h-20 w-14 sm:w-17 z-30 block">
-        <img src={Logo} alt="SenaCloud" className="h-full w-full" />
+        <img src="https://api-img-hgs.netlify.app/img/senacloud-logo.svg" alt="SenaCloud" className="h-full w-full" />
       </Link>
       <div className="relative z-10 flex items-center justify-start w-full max-w-7xl mx-auto min-h-[600px]">
         {/* Contenedor del login, más a la izquierda */}

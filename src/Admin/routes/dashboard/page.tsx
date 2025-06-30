@@ -2,7 +2,7 @@ import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "rec
 
 import { useTheme } from "../../hooks/use-theme";
 
-import { overviewData, recentSalesData, topProducts } from "../../constants";
+import { overviewData, recentSalesData, topProducts, eventosPasados, proximosEventos } from "../../constants";
 
 import { Footer } from "../../layouts/footer";
 
@@ -13,14 +13,14 @@ const DashboardPage = () => {
 
     return (
         <div className="flex flex-col gap-y-4 rounded-2xl">
-            <h1 className="title">Principal</h1>
+            <h1 className="title">Panel Institucional SenaCloud</h1>
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 <div className="card rounded-2xl">
-                    <div className="card-header rounded-t-lg">
+                    <div className="card-header rounded-2xl">
                         <div className="w-fit rounded-lg bg-green-500/20 p-2 text-green-500 transition-colors dark:bg-green-600/20 dark:text-green-600">
-                            <Package size={26} />
+                            <Users size={26} />
                         </div>
-                        <p className="card-title">Total de Usuarios</p>
+                        <p className="card-title">Usuarios Registrados</p>
                     </div>
                     <div className="card-body bg-slate-100 transition-colors dark:bg-slate-950 rounded-2xl">
                         <p className="text-3xl font-bold text-slate-900 transition-colors dark:text-slate-50">25,154</p>
@@ -33,9 +33,9 @@ const DashboardPage = () => {
                 <div className="card rounded-2xl">
                     <div className="card-header rounded-2xl">
                         <div className="rounded-lg bg-green-500/20 p-2 text-green-500 transition-colors dark:bg-green-600/20 dark:text-green-600">
-                            <DollarSign size={26} />
+                            <CreditCard size={26} />
                         </div>
-                        <p className="card-title">Total de Eventos</p>
+                        <p className="card-title">Eventos Institucionales</p>
                     </div>
                     <div className="card-body bg-slate-100 transition-colors dark:bg-slate-950 rounded-2xl">
                         <p className="text-3xl font-bold text-slate-900 transition-colors dark:text-slate-50">$16,000</p>
@@ -48,9 +48,9 @@ const DashboardPage = () => {
                 <div className="card rounded-2xl">
                     <div className="card-header rounded-2xl">
                         <div className="rounded-lg bg-green-500/20 p-2 text-green-500 transition-colors dark:bg-green-600/20 dark:text-green-600">
-                            <Users size={26} />
+                            <Package size={26} />
                         </div>
-                        <p className="card-title">Total de Actividades</p>
+                        <p className="card-title">Actividades Académicas</p>
                     </div>
                     <div className="card-body bg-slate-100 transition-colors dark:bg-slate-950 rounded-2xl">
                         <p className="text-3xl font-bold text-slate-900 transition-colors dark:text-slate-50">15,400k</p>
@@ -63,9 +63,9 @@ const DashboardPage = () => {
                 <div className="card rounded-2xl">
                     <div className="card-header rounded-2xl">
                         <div className="rounded-lg bg-green-500/20 p-2 text-green-500 transition-colors dark:bg-green-600/20 dark:text-green-600">
-                            <CreditCard size={26} />
+                            <DollarSign size={26} />
                         </div>
-                        <p className="card-title">Total de Notificaciones</p>
+                        <p className="card-title">Comunicados Recientes</p>
                     </div>
                     <div className="card-body bg-slate-100 transition-colors dark:bg-slate-950 rounded-2xl">
                         <p className="text-3xl font-bold text-slate-900 transition-colors dark:text-slate-50">12,340</p>
@@ -79,7 +79,7 @@ const DashboardPage = () => {
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-7">
                 <div className="card col-span-1 md:col-span-2 lg:col-span-4 rounded-2xl">
                     <div className="card-header rounded-2xl">
-                        <p className="card-title">Resumen</p>
+                        <p className="card-title">Resumen Institucional</p>
                     </div>
                     <div className="card-body p-0 rounded-b-lg">
                         <ResponsiveContainer
@@ -147,26 +147,20 @@ const DashboardPage = () => {
                 </div>
                 <div className="card col-span-1 md:col-span-2 lg:col-span-3 rounded-2xl">
                     <div className="card-header rounded-2xl">
-                        <p className="card-title">Eventos Recientes</p>
+                        <p className="card-title">Eventos Pasados</p>
                     </div>
                     <div className="card-body h-[300px] overflow-auto p-0 rounded-b-lg">
-                        {recentSalesData.map((sale) => (
+                        {/* Aquí se mostrarán los eventos pasados institucionales */}
+                        {eventosPasados.map((evento) => (
                             <div
-                                key={sale.email}
+                                key={evento.id}
                                 className="flex items-center justify-between gap-x-4 py-2 pr-2 rounded-lg"
                             >
-                                <div className="flex items-center gap-x-4">
-                                    <img
-                                        src={sale.avatar}
-                                        alt={sale.name}
-                                        className="size-10 flex-shrink-0 rounded-full object-cover"
-                                    />
-                                    <div className="flex flex-col gap-y-2">
-                                        <p className="font-medium text-slate-900 dark:text-slate-50">{sale.name}</p>
-                                        <p className="text-sm text-slate-600 dark:text-slate-400">{sale.email}</p>
-                                    </div>
+                                <div className="flex flex-col gap-y-2">
+                                    <p className="font-medium text-slate-900 dark:text-slate-50">{evento.titulo}</p>
+                                    <p className="text-sm text-slate-600 dark:text-slate-400">{evento.fecha} - {evento.ubicacion}</p>
                                 </div>
-                                <p className="font-medium text-slate-900 dark:text-slate-50">${sale.amount}</p>
+                                <span className="text-xs font-semibold text-green-600 dark:text-green-400">{evento.estado}</span>
                             </div>
                         ))}
                     </div>
@@ -174,7 +168,7 @@ const DashboardPage = () => {
             </div>
             <div className="card rounded-2xl">
                 <div className="card-header rounded-2xl">
-                    <p className="card-title">Eventos Populares</p>
+                    <p className="card-title">Próximos Eventos</p>
                 </div>
                 <div className="card-body p-0 rounded-b-lg">
                     <div className="relative h-[500px] w-full flex-shrink-0 overflow-auto rounded-lg [scrollbar-width:_thin]">
@@ -182,54 +176,23 @@ const DashboardPage = () => {
                             <thead className="table-header rounded-t-lg">
                                 <tr className="table-row rounded-t-lg">
                                     <th className="table-head">#</th>
-                                    <th className="table-head">Product</th>
-                                    <th className="table-head">Price</th>
-                                    <th className="table-head">Status</th>
-                                    <th className="table-head">Rating</th>
-                                    <th className="table-head">Actions</th>
+                                    <th className="table-head">Evento</th>
+                                    <th className="table-head">Fecha</th>
+                                    <th className="table-head">Ubicación</th>
+                                    <th className="table-head">Estado</th>
                                 </tr>
                             </thead>
                             <tbody className="table-body">
-                                {topProducts.map((product) => (
+                                {proximosEventos.map((evento, idx) => (
                                     <tr
-                                        key={product.name}
+                                        key={evento.id}
                                         className="table-row rounded-lg"
                                     >
-                                        <td className="table-cell">{topProducts.indexOf(product) + 1}</td>
-                                        <td className="table-cell">
-                                            <div className="flex w-max gap-x-4 rounded-lg">
-                                                <img
-                                                    src={product.image}
-                                                    alt={product.name}
-                                                    className="size-14 rounded-lg object-cover"
-                                                />
-                                                <div className="flex flex-col">
-                                                    <p>{product.name}</p>
-                                                    <p className="font-normal text-slate-600 dark:text-slate-400">{product.description}</p>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td className="table-cell">${product.price}</td>
-                                        <td className="table-cell">Pending</td>
-                                        <td className="table-cell">
-                                            <div className="flex items-center gap-x-2 rounded-full">
-                                                <Star
-                                                    size={18}
-                                                    className="fill-yellow-600 stroke-yellow-600"
-                                                />
-                                                {(product as { rating?: number }).rating || 0}
-                                            </div>
-                                        </td>
-                                        <td className="table-cell">
-                                            <div className="flex items-center gap-x-4">
-                                                <button className="text-green-500 dark:text-green-600 rounded-full">
-                                                    <PencilLine size={20} />
-                                                </button>
-                                                <button className="text-red-500 rounded-full">
-                                                    <Trash size={20} />
-                                                </button>
-                                            </div>
-                                        </td>
+                                        <td className="table-cell">{idx + 1}</td>
+                                        <td className="table-cell">{evento.titulo}</td>
+                                        <td className="table-cell">{evento.fecha}</td>
+                                        <td className="table-cell">{evento.ubicacion}</td>
+                                        <td className="table-cell">{evento.estado}</td>
                                     </tr>
                                 ))}
                             </tbody>
