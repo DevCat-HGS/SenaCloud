@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+
 const NotFound: React.FC = () => {
   return (
+    
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-green-50 to-green-200 px-4 relative">
       {/* Logo Sena en la esquina superior izquierda */}
       <Link
@@ -22,7 +24,10 @@ const NotFound: React.FC = () => {
         alt="SenaCloud Logo"
         className="w-24 h-24 mb-6 animate-bounce"
       />
-      <h1 className="text-6xl font-extrabold text-green-600 mb-4 drop-shadow-lg">404</h1>
+      <h1 className="text-9xl font-extrabold text-transparent drop-shadow-lg z-20 custom-outline">
+        404
+      </h1>
+
       <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">¡Página no encontrada!</h2>
       <p className="text-gray-600 mb-8 text-center max-w-md">
         Lo sentimos, la ruta que buscas no existe o ha sido movida. Por favor, verifica la URL o regresa al inicio para continuar explorando SenaCloud.
