@@ -57,8 +57,8 @@ const StyledWrapper = styled.div`
     --page: rgba(255, 255, 255, 0.36);
     --page-fold: rgba(255, 255, 255, 0.52);
     --duration: 3s;
-    width: 120px;
-    height: 80px;
+    width: 200px;
+    height: 140px;
     position: relative;
   }
 
@@ -140,8 +140,8 @@ const StyledWrapper = styled.div`
   }
 
   .loader div ul li svg {
-    width: 54px;
-    height: 72px;
+    width: 90px;
+    height: 120px;
     display: block;
   }
 
@@ -155,8 +155,13 @@ const StyledWrapper = styled.div`
   }
 
   .loader span {
-    font-size: 0.95rem;
-    margin-top: 10px;
+    display: block;
+    left: 0;
+    right: 0;
+    top: 100%;
+    margin-top: 20px;
+    text-align: center;
+    color: var(--text);
   }
 
   @keyframes page-2 {

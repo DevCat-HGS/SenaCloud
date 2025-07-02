@@ -1,5 +1,9 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { lazy, Suspense } from 'react';
+import Loader from '../loader';
+
+const DashboardPage = lazy(() => new Promise(resolve => setTimeout(resolve, 2000)).then(() => import('../Admin/routes/dashboard/page')));
 
 export default function Login() {
   const [form, setForm] = useState({
@@ -9,6 +13,7 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [confirm, setConfirm] = useState(false);
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -17,15 +22,15 @@ export default function Login() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.correo.endsWith('@mi.sena.edu.co')) {
-      setError('El correo debe ser institucional (@mi.sena.edu.co)');
+    if (!form.correo.endsWith('sena.edu.co')) {
+      setError('El correo debe ser institucional (@sena.edu.co)');
       return;
     }
     setConfirm(true);
   };
 
   const handleConfirm = () => {
-    window.location.href = '/Admin';
+    navigate('/Admin');
   };
 
   return (

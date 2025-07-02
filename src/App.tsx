@@ -9,7 +9,6 @@ const Register = lazy(() =>
   new Promise(resolve => setTimeout(resolve, 2000)).then(() => import("./User/Register"))
 );
 import Admin from './Admin/Dashboard.tsx';
-import DashboardPage from './Admin/routes/dashboard/page';
 import { Usuarios } from './Admin/components/Usuarios';
 import { Actividades } from './Admin/components/Actividades';
 import { Eventos } from './Admin/components/Eventos';
@@ -17,6 +16,8 @@ import SupportButton from './components/SupportButton';
 import NotFound from './404';
 import Loader from './loader';
 import { Suspense } from 'react';
+
+const DashboardPage = lazy(() => new Promise(resolve => setTimeout(resolve, 2000)).then(() => import('./Admin/routes/dashboard/page')));
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

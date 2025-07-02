@@ -24,9 +24,10 @@ const NotFound: React.FC = () => {
         alt="SenaCloud Logo"
         className="w-24 h-24 mb-6 animate-bounce"
       />
-      <h1 className="text-9xl font-extrabold text-transparent drop-shadow-lg z-20 custom-outline">
+      <h1 className="text-9xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-green-700 drop-shadow-lg z-20 mb-4">
         404
       </h1>
+
 
       <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">¡Página no encontrada!</h2>
       <p className="text-gray-600 mb-8 text-center max-w-md">
@@ -34,9 +35,13 @@ const NotFound: React.FC = () => {
       </p>
       <Link
         to="/"
-        className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-green-300"
+        className="relative group bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-green-300 overflow-hidden"
+        style={{ perspective: '600px' }}
       >
-        Volver al inicio
+        <span className="absolute inset-0 rounded-full group-hover:scale-110 group-hover:opacity-20 bg-green-700 transition-all duration-500 z-0" />
+        <span className="relative z-10 block group-active:scale-x-[-1] transition-transform duration-500">
+          Volver al inicio
+        </span>
       </Link>
     </div>
   );
