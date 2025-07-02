@@ -16,18 +16,16 @@ import {
     Bell
 } from "lucide-react";
 
-import ProfileImage from "../assets/profile-image.jpg";
-import ProductImage from "../assets/product-image.jpg";
 
 export const navbarLinks = [
     {
         title: "Principal",
         links: [
             {
-                title: "Dashboard",
+                title: "Inicio",
                 href: "/Admin",
                 icon: Home,
-                label: "Dashboard",
+                label: "Inicio",
                 path: "/Admin"
             },
             {
@@ -173,60 +171,6 @@ export const overviewData = [
     {
         name: "Dic",
         total: Math.floor(Math.random() * 5000) + 1000,
-    },
-];
-
-export const recentSalesData = [
-    {
-        name: "Juan Pérez",
-        email: "juan.perez@email.com",
-        amount: "+$1,999.00",
-        avatar: ProfileImage,
-    },
-    {
-        name: "María García",
-        email: "maria.garcia@email.com",
-        amount: "+$39.00",
-        avatar: ProfileImage,
-    },
-    {
-        name: "Carlos López",
-        email: "carlos.lopez@email.com",
-        amount: "+$299.00",
-        avatar: ProfileImage,
-    },
-    {
-        name: "Ana Martínez",
-        email: "ana.martinez@email.com",
-        amount: "+$99.00",
-        avatar: ProfileImage,
-    },
-    {
-        name: "Luis Rodríguez",
-        email: "luis.rodriguez@email.com",
-        amount: "+$39.00",
-        avatar: ProfileImage,
-    },
-];
-
-export const topProducts = [
-    {
-        name: "Curso de React",
-        description: "Aprende React desde cero",
-        price: "$299.00",
-        image: ProductImage,
-    },
-    {
-        name: "Curso de TypeScript",
-        description: "TypeScript para desarrolladores",
-        price: "$199.00",
-        image: ProductImage,
-    },
-    {
-        name: "Curso de Node.js",
-        description: "Backend con Node.js",
-        price: "$399.00",
-        image: ProductImage,
     },
 ];
 

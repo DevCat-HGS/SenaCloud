@@ -2,11 +2,11 @@ import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "rec
 
 import { useTheme } from "../../hooks/use-theme";
 
-import { overviewData, recentSalesData, topProducts, eventosPasados, proximosEventos } from "../../constants";
+import { overviewData, eventosPasados, proximosEventos } from "../../constants";
 
 import { Footer } from "../../layouts/footer";
 
-import { CreditCard, DollarSign, Package, PencilLine, Star, Trash, TrendingUp, Users } from "lucide-react";
+import { CreditCard, DollarSign, Package, TrendingUp, Users } from "lucide-react";
 
 const DashboardPage = () => {
     const { theme } = useTheme();
@@ -23,7 +23,7 @@ const DashboardPage = () => {
                         <p className="card-title">Usuarios Registrados</p>
                     </div>
                     <div className="card-body bg-slate-100 transition-colors dark:bg-slate-950 rounded-2xl">
-                        <p className="text-3xl font-bold text-slate-900 transition-colors dark:text-slate-50">25,154</p>
+                        <p className="text-3xl font-bold text-slate-900 transition-colors dark:text-slate-50">25</p>
                         <span className="flex w-fit items-center gap-x-2 rounded-full border border-green-500 px-2 py-1 font-medium text-green-500 dark:border-green-600 dark:text-green-600">
                             <TrendingUp size={18} />
                             25%
@@ -38,7 +38,7 @@ const DashboardPage = () => {
                         <p className="card-title">Eventos Institucionales</p>
                     </div>
                     <div className="card-body bg-slate-100 transition-colors dark:bg-slate-950 rounded-2xl">
-                        <p className="text-3xl font-bold text-slate-900 transition-colors dark:text-slate-50">$16,000</p>
+                        <p className="text-3xl font-bold text-slate-900 transition-colors dark:text-slate-50">16</p>
                         <span className="flex w-fit items-center gap-x-2 rounded-full border border-green-500 px-2 py-1 font-medium text-green-500 dark:border-green-600 dark:text-green-600">
                             <TrendingUp size={18} />
                             12%
@@ -53,7 +53,7 @@ const DashboardPage = () => {
                         <p className="card-title">Actividades Académicas</p>
                     </div>
                     <div className="card-body bg-slate-100 transition-colors dark:bg-slate-950 rounded-2xl">
-                        <p className="text-3xl font-bold text-slate-900 transition-colors dark:text-slate-50">15,400k</p>
+                        <p className="text-3xl font-bold text-slate-900 transition-colors dark:text-slate-50">15</p>
                         <span className="flex w-fit items-center gap-x-2 rounded-full border border-green-500 px-2 py-1 font-medium text-green-500 dark:border-green-600 dark:text-green-600">
                             <TrendingUp size={18} />
                             15%
@@ -68,7 +68,7 @@ const DashboardPage = () => {
                         <p className="card-title">Comunicados Recientes</p>
                     </div>
                     <div className="card-body bg-slate-100 transition-colors dark:bg-slate-950 rounded-2xl">
-                        <p className="text-3xl font-bold text-slate-900 transition-colors dark:text-slate-50">12,340</p>
+                        <p className="text-3xl font-bold text-slate-900 transition-colors dark:text-slate-50">12</p>
                         <span className="flex w-fit items-center gap-x-2 rounded-full border border-green-500 px-2 py-1 font-medium text-green-500 dark:border-green-600 dark:text-green-600">
                             <TrendingUp size={18} />
                             19%
