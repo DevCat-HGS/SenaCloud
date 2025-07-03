@@ -3,10 +3,10 @@ import "./index.css";
 import { Routes, Route, Link, Router } from "react-router-dom";
 import { lazy } from "react";
 const Login = lazy(() =>
-  new Promise(resolve => setTimeout(resolve, 2000)).then(() => import("./User/Login"))
+  new Promise(resolve => setTimeout(resolve, 500)).then(() => import("./User/Login"))
 );
 const Register = lazy(() =>
-  new Promise(resolve => setTimeout(resolve, 2000)).then(() => import("./User/Register"))
+  new Promise(resolve => setTimeout(resolve, 500)).then(() => import("./User/Register"))
 );
 import Admin from './Admin/Dashboard.tsx';
 import { Usuarios } from './Admin/components/Usuarios';
@@ -17,7 +17,7 @@ import NotFound from './404';
 import Loader from './loader';
 import { Suspense } from 'react';
 
-const DashboardPage = lazy(() => new Promise(resolve => setTimeout(resolve, 2000)).then(() => import('./Admin/routes/dashboard/page')));
+const DashboardPage = lazy(() => new Promise(resolve => setTimeout(resolve, 500)).then(() => import('./Admin/routes/dashboard/page')));
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
