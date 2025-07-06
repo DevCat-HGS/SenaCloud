@@ -75,7 +75,7 @@ export default function Register() {
             </div>
             <div className="mb-4 w-full">
               <label className="block mb-1 font-semibold text-green-700">Correo institucional</label>
-              <input name="correo" type="email" value={form.correo} onChange={handleChange} required placeholder="usuario@mi.sena.edu.co" className="w-full px-4 py-2 rounded-xl border border-green-200 focus:outline-none focus:ring-4 focus:ring-green-400/40 bg-white/80 shadow-inner transition-all duration-200" />
+              <input name="correo" type="email" value={form.correo} onChange={handleChange} required placeholder="usuario@sena.edu.co" className="w-full px-4 py-2 rounded-xl border border-green-200 focus:outline-none focus:ring-4 focus:ring-green-400/40 bg-white/80 shadow-inner transition-all duration-200" />
             </div>
             <div className="mb-4 w-full relative">
               <label className="block mb-1 font-semibold text-green-700">Contraseña</label>
