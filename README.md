@@ -41,15 +41,16 @@ CTPGA Manager es una aplicación web integral diseñada para optimizar la organi
 ## Estructura
 
 - **API:** Backend con Express y MongoDB
-- **AdminPanel:** Panel para administradores y superadministradores
+- **Admin:** Panel para administradores y superadministradores
+- **EquipoPedagogico:** Para el equipo Pedagogico 
 - **InstructorPanel:** Panel para instructores
 
 ## Funcionalidades
 
-- Sistema de autenticación con roles (Superadmin, Administrador,Equipo Pedagogico , Instructor)
+- Sistema de autenticación con roles (Superadmin, Administrador, Equipo Pedagogico, Instructor)
 - Gestión de guías con sistema de versionado
 - Administración de actividades, eventos y reportes
 - Notificaciones en tiempo real con Socket.io
-- Generación de reportes
+- Generación de reportes(Excel)
 
 
