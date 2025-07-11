@@ -4,7 +4,7 @@ Sistema de gestión para SENA que facilita la administración de guías, reporte
 
 ## Descripción
 
-CTPGA Manager es una aplicación web integral diseñada para optimizar la organización académica y administrativa mediante un sistema intuitivo que permite a instructores, administradores y superadministradores coordinar eficientemente sus responsabilidades.
+SENA Cloud es una aplicación web integral diseñada para optimizar la organización académica y administrativa mediante un sistema intuitivo que permite a instructores, administradores y superadministradores coordinar eficientemente sus responsabilidades.
 
 ---
 
