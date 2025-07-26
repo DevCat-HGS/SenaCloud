@@ -1,50 +1,54 @@
-# React + TypeScript + Vite
+# SENA Cloud
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Sistema de gestión para SENA que facilita la administración de guías, reportes, eventos y actividades académicas.
 
-Currently, two official plugins are available:
+## Descripción
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+SENA Cloud es una aplicación web integral diseñada para optimizar la organización académica y administrativa mediante un sistema intuitivo que permite a instructores, administradores y superadministradores coordinar eficientemente sus responsabilidades.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## 🛠️ Tecnologías Utilizadas
 
-- Configure the top-level `parserOptions` property like this:
+- **Backend Principal:** Node.js + Express.js  
+- **APIs Adicionales (Microservicios):**
+  - **Flask API (Python)** para integración modular
+  - **Auth API:** Gestión de autenticación y autorización basada en roles (JWT + Auth0)
+  - **CRUD API:** Servicios RESTful para operaciones sobre guías, actividades y reportes
+  - **Resources API:** Servicio de Recursos videos, fotos, audio, PDF, Excel, Entre otros.
+- **Base de Datos:** MongoDB  
+- **Frontend:** React.js + Context API  
+- **Estilos:** Tailwind CSS  
+- **Comunicación en Tiempo Real:** Socket.io  
+- **Autenticación y Seguridad:** Auth0 + JWT  
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+---
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### 📬 Notificaciones y Comunicaciones
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+- **Correo Electrónico:**
+  - [`Nodemailer`](https://nodemailer.com/about/) (Node.js): Envío de correos por SMTP (Gmail)
+  - [`Flask-Mail`](https://pythonhosted.org/Flask-Mail/) (Python): Para microservicios con Flask
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+- **Notificaciones en la Interfaz:**
+  - [`react-toastify`](https://fkhadra.github.io/react-toastify/): Toasts interactivos para mensajes instantáneos al usuario
+  - [`SweetAlert2`](https://sweetalert2.github.io/): Modales personalizados para alertas, confirmaciones o errores
+
+- **Socket.io:** Notificaciones en tiempo real entre usuarios activos
+
+---
+
+## Estructura
+
+- **API:** Backend con Express y MongoDB
+- **Admin:** Panel para administradores y superadministradores
+- **EquipoPedagogico:** Para el equipo Pedagogico 
+- **InstructorPanel:** Panel para instructores
+
+## Funcionalidades
+
+- Sistema de autenticación con roles (Superadmin, Administrador, Equipo Pedagogico, Instructor)
+- Gestión de guías con sistema de versionado
+- Administración de actividades, eventos y reportes
+- Notificaciones en tiempo real con Socket.io
+- Generación de reportes(Excel)

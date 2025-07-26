@@ -15,7 +15,7 @@ export const Header = ({ collapsed, setCollapsed }: HeaderProps) => {
     const { theme, setTheme } = useTheme();
 
     return (
-        <header className="relative z-10 flex h-[60px] items-center justify-between bg-white px-4 shadow-md transition-colors dark:bg-slate-900 mt-2 mb-2 mx-4 rounded-2xl border-2 border-green-500 dark:border-green-600">
+        <header className="relative z-10 flex h-[60px] items-center justify-between bg-white px-4 shadow-md transition-colors dark:bg-slate-900 mt-2 mb-2 mx-4 rounded-2xl border-2 border-green-100 dark:border-green-100">
             <div className="flex items-center gap-x-3">
                 <button
                     className="btn-ghost size-10"

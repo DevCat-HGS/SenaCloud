@@ -40,13 +40,13 @@ export const navbarLinks = [
     {
         title: "Reportes",
         links: [
-            {
-                title: "Reportes PDF",
-                href: "/Admin/reportes/pdf",
-                icon: FilePdf,
-                label: "PDF",
-                path: "/Admin/reportes/pdf"
-            },
+            // {
+            //     title: "Reportes PDF",
+            //     href: "/Admin/reportes/pdf",
+            //     icon: FilePdf,
+            //     label: "PDF",
+            //     path: "/Admin/reportes/pdf"
+            // },
             {
                 title: "Reportes Excel",
                 href: "/Admin/reportes/excel",

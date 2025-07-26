@@ -19,7 +19,7 @@ export const Sidebar = forwardRef<HTMLDivElement, SidebarProps>(({ collapsed }, 
         <aside
             ref={ref}
             className={cn(
-                "fixed z-[100] flex h-full w-[240px] flex-col overflow-x-hidden border-2 border-green-500 bg-white rounded-2xl mt-0 mb-0 mx-4 dark:border-green-600 dark:bg-slate-900",
+                "fixed z-[100] flex h-full w-[240px] flex-col overflow-x-hidden border-2 border-green-100 bg-white rounded-2xl mt-0 mb-0 mx-4 dark:border-green-100 dark:bg-slate-900",
                 collapsed ? "md:w-[70px] md:items-center" : "md:w-[240px]",
                 collapsed ? "max-md:-left-full" : "max-md:left-0",
             )}
