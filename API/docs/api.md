@@ -17,6 +17,45 @@ La API de SenaCloud es una API RESTful que proporciona servicios para la platafo
 
 **GET /** - Obtiene el estado actual de la API
 
+### 2. Gestión de Usuarios
+
+#### Obtener todos los usuarios
+**GET /api/users**
+
+Retorna una lista de todos los usuarios registrados.
+
+#### Obtener un usuario específico
+**GET /api/users/:id**
+
+Retorna la información de un usuario específico por su ID.
+
+#### Crear un nuevo usuario
+**POST /api/users**
+
+Crea un nuevo usuario. Requiere los siguientes campos en el cuerpo de la petición:
+
+```json
+{
+  "nombre": "String (requerido)",
+  "tipoDocumento": "String (CC, CE, TI, PASAPORTE)",
+  "documento": "String (único, requerido)",
+  "correoInstitucional": "String (@sena.edu.co, único)",
+  "correoPersonal": "String (único)",
+  "etiquetas": ["String"],
+  "rol": "String (Instructor, EquipoPedagogico, Coordinacion, Admin)"
+}
+```
+
+#### Actualizar un usuario
+**PUT /api/users/:id**
+
+Actualiza la información de un usuario existente. Acepta los mismos campos que la creación.
+
+#### Eliminar un usuario
+**DELETE /api/users/:id**
+
+Elimina un usuario específico por su ID.
+
 #### Respuesta
 
 ```json
@@ -196,4 +235,4 @@ Para contribuir al proyecto:
 
 ## Licencia
 
-Este proyecto está bajo la licencia MIT. Ver el archivo LICENSE para más detalles. 
+Este proyecto está bajo la licencia MIT. Ver el archivo LICENSE para más detalles.

@@ -1,14 +1,13 @@
+require('dotenv').config();
 const express = require('express');
 const http = require('http');
-const socketIo = require('socket.io');
+const connectDB = require('./config/db');
 const app = express();
 const server = http.createServer(app);
-const io = socketIo(server, {
-  cors: {
-    origin: "*",
-    methods: ["GET", "POST"]
-  }
-});
+
+// Inicializar Socket.IO
+const socketIO = require('./sockets/io');
+const io = socketIO.init(server);
 
 // Middleware
 app.use(express.json());
@@ -33,10 +32,26 @@ app.use((req, res, next) => {
 // Importar rutas
 const statusRoutes = require('./routes/status');
 const docRoutes = require('./routes/doc');
+const userRoutes = require('./routes/users');
+const notificationRoutes = require('./routes/notifications');
+const activityRoutes = require('./routes/activities');
+const eventRoutes = require('./routes/events');
+const guideRoutes = require('./routes/guides');
+
+// Conectar a MongoDB
+connectDB();
 
 // Usar rutas
 app.use('/', statusRoutes);
 app.use('/doc', docRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/notifications', notificationRoutes);
+app.use('/api/activities', activityRoutes);
+app.use('/api/events', eventRoutes);
+app.use('/api/guides', guideRoutes);
+
+// Importar manejadores de eventos de Socket.IO
+const setupEventHandlers = require('./sockets/eventHandlers');
 
 // Socket.IO Connection Handler
 io.on('connection', (socket) => {
@@ -74,6 +89,9 @@ io.on('connection', (socket) => {
   });
 });
 
+// Configurar manejadores de eventos para cada módulo
+setupEventHandlers(io);
+
 // Función para obtener datos de estado
 function getStatusData() {
   const uptime = process.uptime();
@@ -104,7 +122,34 @@ function getStatusData() {
     endpoints: {
       available: [
         { path: '/', method: 'GET', description: 'Estado de la API' },
-        { path: '/doc', method: 'GET', description: 'Documentación de la API' }
+        { path: '/doc', method: 'GET', description: 'Documentación de la API' },
+        { path: '/api/users', method: 'GET', description: 'Obtener todos los usuarios' },
+        { path: '/api/users/:id', method: 'GET', description: 'Obtener un usuario específico' },
+        { path: '/api/users', method: 'POST', description: 'Crear un nuevo usuario' },
+        { path: '/api/users/:id', method: 'PUT', description: 'Actualizar un usuario' },
+        { path: '/api/users/:id', method: 'DELETE', description: 'Eliminar un usuario' },
+        { path: '/api/notifications', method: 'GET', description: 'Obtener todas las notificaciones' },
+        { path: '/api/notifications/user/:userId', method: 'GET', description: 'Obtener notificaciones de un usuario' },
+        { path: '/api/notifications', method: 'POST', description: 'Crear una nueva notificación' },
+        { path: '/api/notifications/:id', method: 'PUT', description: 'Marcar notificación como leída' },
+        { path: '/api/notifications/:id', method: 'DELETE', description: 'Eliminar una notificación' },
+        { path: '/api/activities', method: 'GET', description: 'Obtener todas las actividades' },
+        { path: '/api/activities/:id', method: 'GET', description: 'Obtener una actividad específica' },
+        { path: '/api/activities', method: 'POST', description: 'Crear una nueva actividad' },
+        { path: '/api/activities/:id', method: 'PUT', description: 'Actualizar una actividad' },
+        { path: '/api/activities/:id', method: 'DELETE', description: 'Eliminar una actividad' },
+        { path: '/api/events', method: 'GET', description: 'Obtener todos los eventos' },
+        { path: '/api/events/:id', method: 'GET', description: 'Obtener un evento específico' },
+        { path: '/api/events', method: 'POST', description: 'Crear un nuevo evento' },
+        { path: '/api/events/:id', method: 'PUT', description: 'Actualizar un evento' },
+        { path: '/api/events/:id', method: 'DELETE', description: 'Eliminar un evento' },
+        { path: '/api/events/:id/participant/:userId', method: 'PUT', description: 'Actualizar estado de participante en evento' },
+        { path: '/api/guides', method: 'GET', description: 'Obtener todas las guías' },
+        { path: '/api/guides/:id', method: 'GET', description: 'Obtener una guía específica' },
+        { path: '/api/guides', method: 'POST', description: 'Crear una nueva guía' },
+        { path: '/api/guides/:id', method: 'PUT', description: 'Actualizar una guía' },
+        { path: '/api/guides/:id/status', method: 'PUT', description: 'Cambiar estado de una guía' },
+        { path: '/api/guides/:id', method: 'DELETE', description: 'Eliminar una guía' }
       ]
     },
     contact: {
