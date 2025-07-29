@@ -568,14 +568,13 @@ function App() {
               </footer>
             </div>
           }
-        />
+        /> 
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/Admin" element={<Admin />}>
           <Route index element={<DashboardPage />} />
           <Route path="analisis" element={<h1 className="title">Análisis</h1>} />
           <Route path="reportes">
-            <Route path="pdf" element={<h1 className="title">Reportes PDF</h1>} />
             <Route path="excel" element={<h1 className="title">Reportes Excel</h1>} />
           </Route>
           <Route path="usuarios">
