@@ -2,38 +2,57 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 import Loader from '../loader';
+import ProfessionTags from './ProfessionTags';
+import RegistrationConfirmation from './RegistrationConfirmation';
 
 const DashboardPage = lazy(() => new Promise(resolve => setTimeout(resolve, 2000)).then(() => import('../Admin/routes/dashboard/page')));
 
 export default function Register() {
   const [form, setForm] = useState({
-    nombres: '',
-    apellidos: '',
+    nombreCompleto: '',
+    tipoDocumento: 'CC',
+    numeroDocumento: '',
     correo: '',
     password: '',
   });
+  
+  const [step, setStep] = useState(1); // Para controlar los pasos del registro
+  const [etiquetas, setEtiquetas] = useState<string[]>([]);
+  const [registroEnviado, setRegistroEnviado] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [confirm, setConfirm] = useState(false);
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
     setError('');
+  };
+  
+  const handleEtiquetaChange = (etiqueta: string) => {
+    if (etiquetas.includes(etiqueta as never)) {
+      setEtiquetas(etiquetas.filter(e => e !== etiqueta));
+    } else {
+      setEtiquetas((prev: string[]) => [...prev, etiqueta]);
+    }
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.correo.endsWith('@sena.edu.co')) {
-      setError('El correo debe ser institucional (@sena.edu.co)');
-      return;
+    
+    if (step === 1) {
+      setStep(2); // Avanzar al paso de selección de etiquetas
+    } else if (step === 2) {
+      setConfirm(true);
     }
-    setConfirm(true);
-    navigate('/Admin');
   };
 
   const handleConfirm = () => {
-    navigate('/Admin');
+    setRegistroEnviado(true);
+    // Después de 3 segundos, redirigir al login
+    setTimeout(() => {
+      navigate('/login');
+    }, 3000);
   };
 
   return (
@@ -64,44 +83,87 @@ export default function Register() {
         {/* Contenedor del registro, ahora a la derecha */}
         <div className="w-full max-w-md bg-white rounded-3xl shadow-2xl border border-green-500 p-10 flex flex-col items-center mr-0 md:mr-12 animate-fade-in-up relative z-20">
           <h2 className="text-3xl font-extrabold mb-6 text-center text-green-700 drop-shadow-lg tracking-tight">Registro SenaCloud</h2>
-          <form onSubmit={handleSubmit} className="w-full flex flex-col items-center">
-            <div className="mb-4 w-full">
-              <label className="block mb-1 font-semibold text-green-700">Nombres</label>
-              <input name="nombres" value={form.nombres} onChange={handleChange} required className="w-full px-4 py-2 rounded-xl border border-green-200 focus:outline-none focus:ring-4 focus:ring-green-400/40 bg-white/80 shadow-inner transition-all duration-200" />
-            </div>
-            <div className="mb-4 w-full">
-              <label className="block mb-1 font-semibold text-green-700">Apellidos</label>
-              <input name="apellidos" value={form.apellidos} onChange={handleChange} required className="w-full px-4 py-2 rounded-xl border border-green-200 focus:outline-none focus:ring-4 focus:ring-green-400/40 bg-white/80 shadow-inner transition-all duration-200" />
-            </div>
-            <div className="mb-4 w-full">
-              <label className="block mb-1 font-semibold text-green-700">Correo institucional</label>
-              <input name="correo" type="email" value={form.correo} onChange={handleChange} required placeholder="usuario@sena.edu.co" className="w-full px-4 py-2 rounded-xl border border-green-200 focus:outline-none focus:ring-4 focus:ring-green-400/40 bg-white/80 shadow-inner transition-all duration-200" />
-            </div>
-            <div className="mb-4 w-full relative">
-              <label className="block mb-1 font-semibold text-green-700">Contraseña</label>
-              <input name="password" type={showPassword ? 'text' : 'password'} value={form.password} onChange={handleChange} required className="w-full px-4 py-2 rounded-xl border border-green-200 focus:outline-none focus:ring-4 focus:ring-green-400/40 bg-white/80 shadow-inner transition-all duration-200" />
-              <button
-                type="button"
-                onClick={() => setShowPassword(v => !v)}
-                className="absolute right-3 top-8 w-8 h-8 flex items-center justify-center rounded-full bg-white/70 border border-green-200 shadow hover:scale-110 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-400"
-                aria-label={showPassword ? 'Ocultar contraseña' : 'Ver contraseña'}
+          {registroEnviado ? (
+            <RegistrationConfirmation redirectTimeout={3000} />
+          ) : (
+            <form onSubmit={handleSubmit} className="w-full flex flex-col items-center">
+              {step === 1 ? (
+                <>
+                  <div className="mb-4 w-full">
+                    <label className="block mb-1 font-semibold text-green-700">Nombre Completo</label>
+                    <input name="nombreCompleto" value={form.nombreCompleto} onChange={handleChange} required className="w-full px-4 py-2 rounded-xl border border-green-200 focus:outline-none focus:ring-4 focus:ring-green-400/40 bg-white/80 shadow-inner transition-all duration-200" />
+                  </div>
+                  <div className="mb-4 w-full">
+                    <label className="block mb-1 font-semibold text-green-700">Tipo de Documento</label>
+                    <select name="tipoDocumento" value={form.tipoDocumento} onChange={handleChange} required className="w-full px-4 py-2 rounded-xl border border-green-200 focus:outline-none focus:ring-4 focus:ring-green-400/40 bg-white/80 shadow-inner transition-all duration-200">
+                      <option value="CC">Cédula de Ciudadanía</option>
+                      <option value="TI">Tarjeta de Identidad</option>
+                      <option value="CE">Cédula de Extranjería</option>
+                      <option value="PP">Pasaporte</option>
+                    </select>
+                  </div>
+                  <div className="mb-4 w-full">
+                    <label className="block mb-1 font-semibold text-green-700">Número de Documento</label>
+                    <input name="numeroDocumento" value={form.numeroDocumento} onChange={handleChange} required className="w-full px-4 py-2 rounded-xl border border-green-200 focus:outline-none focus:ring-4 focus:ring-green-400/40 bg-white/80 shadow-inner transition-all duration-200" />
+                  </div>
+                  <div className="mb-4 w-full">
+                    <label className="block mb-1 font-semibold text-green-700">Correo personal</label>
+                    <input name="correo" type="email" value={form.correo} onChange={handleChange} required placeholder="ejemplo@correo.com" className="w-full px-4 py-2 rounded-xl border border-green-200 focus:outline-none focus:ring-4 focus:ring-green-400/40 bg-white/80 shadow-inner transition-all duration-200" />
+                  </div>
+                  <div className="mb-4 w-full relative">
+                    <label className="block mb-1 font-semibold text-green-700">Contraseña</label>
+                    <input name="password" type={showPassword ? 'text' : 'password'} value={form.password} onChange={handleChange} required className="w-full px-4 py-2 rounded-xl border border-green-200 focus:outline-none focus:ring-4 focus:ring-green-400/40 bg-white/80 shadow-inner transition-all duration-200" />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(v => !v)}
+                      className="absolute right-3 top-8 w-8 h-8 flex items-center justify-center rounded-full bg-white/70 border border-green-200 shadow hover:scale-110 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-400"
+                      aria-label={showPassword ? 'Ocultar contraseña' : 'Ver contraseña'}
+                    >
+                      {showPassword ? (
+                        <img src="https://api-img-hgs.netlify.app/img/ver.png" alt="Ocultar contraseña" className="w-5 h-5" />
+                      ) : (
+                        <img src="https://api-img-hgs.netlify.app/img/ocultar.png" alt="Ver contraseña" className="w-5 h-5" />
+                      )}
+                    </button>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <ProfessionTags 
+                    selectedTags={etiquetas} 
+                    onTagChange={handleEtiquetaChange} 
+                  />
+                    
+                  <div className="flex justify-between mt-6">
+                    <button 
+                      type="button" 
+                      onClick={() => setStep(1)}
+                      className="px-4 py-2 rounded-xl border border-green-500 text-green-600 font-semibold hover:bg-green-50 transition-colors"
+                    >
+                      Atrás
+                    </button>
+                  </div>
+                </>
+              )}
+              
+              {error && <div className="text-red-600 mb-2 text-sm font-semibold animate-fade-in">{error}</div>}
+              
+              <button 
+                type="submit" 
+                className="w-full bg-gradient-to-r from-green-500 via-emerald-400 to-green-600 text-white py-2 rounded-full font-extrabold shadow-lg hover:scale-105 hover:from-green-600 hover:to-emerald-500 transition-all duration-300 animate-glow focus:outline-none focus:ring-4 focus:ring-green-300 mt-4"
               >
-                {showPassword ? (
-                  <img src="https://api-img-hgs.netlify.app/img/ver.png" alt="Ocultar contraseña" className="w-5 h-5" />
-                ) : (
-                  <img src="https://api-img-hgs.netlify.app/img/ocultar.png" alt="Ver contraseña" className="w-5 h-5" />
-                )}
+                {step === 1 ? 'Continuar' : 'Finalizar Registro'}
               </button>
-            </div>
-            {error && <div className="text-red-600 mb-2 text-sm font-semibold animate-fade-in">{error}</div>}
-            <button type="submit" className="w-full bg-gradient-to-r from-green-500 via-emerald-400 to-green-600 text-white py-2 rounded-full font-extrabold shadow-lg hover:scale-105 hover:from-green-600 hover:to-emerald-500 transition-all duration-300 animate-glow focus:outline-none focus:ring-4 focus:ring-green-300 mt-2">Registrarme</button>
-            {confirm && (
-              <div className="mt-4 p-3 bg-green-100 border border-green-300 rounded-lg text-green-800 text-center animate-fade-in">
-                ¿Estás seguro de tu contraseña?
-                <button type="button" onClick={handleConfirm} className="ml-4 bg-green-600 text-white px-4 py-1 rounded-full hover:bg-green-700 transition-colors">Sí, continuar</button>
-              </div>
-            )}
-          </form>
+              
+              {confirm && (
+                <div className="mt-4 p-3 bg-green-100 border border-green-300 rounded-lg text-green-800 text-center animate-fade-in">
+                  ¿Está seguro de enviar su solicitud de registro?
+                  <button type="button" onClick={handleConfirm} className="ml-4 bg-green-600 text-white px-4 py-1 rounded-full hover:bg-green-700 transition-colors">Sí, enviar</button>
+                </div>
+              )}
+            </form>
+          )}
+          
           {/* Enlace a login */}
           <div className="w-full flex justify-center mt-6">
             <Link to="/login" className="flex items-center gap-2 text-green-700 font-semibold hover:underline hover:text-green-900 transition-colors group">
@@ -113,4 +175,4 @@ export default function Register() {
       </div>
     </div>
   );
-} 
+}
