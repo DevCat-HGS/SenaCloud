@@ -18,6 +18,9 @@ import Loader from './loader';
 import { Suspense } from 'react';
 
 const DashboardPage = lazy(() => new Promise(resolve => setTimeout(resolve, 500)).then(() => import('./Admin/routes/dashboard/page')));
+const AnalisisPage = lazy(() => new Promise(resolve => setTimeout(resolve, 500)).then(() => import('./Admin/routes/analisis/page')));
+const ReportesExcelPage = lazy(() => new Promise(resolve => setTimeout(resolve, 500)).then(() => import('./Admin/routes/reportes/excel/page')));
+const AjustesPage = lazy(() => new Promise(resolve => setTimeout(resolve, 500)).then(() => import('./Admin/routes/ajustes/page')));
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -573,9 +576,9 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/Admin" element={<Admin />}>
           <Route index element={<DashboardPage />} />
-          <Route path="analisis" element={<h1 className="title">Análisis</h1>} />
+          <Route path="analisis" element={<AnalisisPage />} />
           <Route path="reportes">
-            <Route path="excel" element={<h1 className="title">Reportes Excel</h1>} />
+            <Route path="excel" element={<ReportesExcelPage />} />
           </Route>
           <Route path="usuarios">
             <Route path="instructores" element={<Usuarios tipo="instructores" />} />
@@ -585,7 +588,7 @@ function App() {
           </Route>
           <Route path="actividades" element={<Actividades />} />
           <Route path="eventos" element={<Eventos />} />
-          <Route path="ajustes" element={<h1 className="title">Ajustes</h1>} />
+          <Route path="ajustes" element={<AjustesPage />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
