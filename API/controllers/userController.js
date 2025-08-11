@@ -59,6 +59,34 @@ exports.updateUser = async (req, res) => {
   }
 };
 
+// Actualizar estado de instructor
+exports.updateInstructorStatus = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    if (!user) {
+      return res.status(404).json({ message: 'Usuario no encontrado' });
+    }
+    
+    if (user.rol !== 'Instructor') {
+      return res.status(400).json({ message: 'El usuario no es un instructor' });
+    }
+    
+    if (!['pendiente', 'aprobado'].includes(req.body.estadoInstructor)) {
+      return res.status(400).json({ message: 'Estado inválido. Debe ser "pendiente" o "aprobado"' });
+    }
+    
+    user.estadoInstructor = req.body.estadoInstructor;
+    await user.save();
+    
+    // Emitir evento de usuario actualizado
+    io.of('/users').emit('user-updated', user);
+    
+    res.json(user);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
 // Eliminar un usuario
 exports.deleteUser = async (req, res) => {
   try {

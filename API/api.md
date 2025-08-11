@@ -23,6 +23,10 @@ Crea un nuevo usuario. Requiere los siguientes campos:
 #### PUT /api/users/:id
 Actualiza la información de un usuario específico.
 
+#### PUT /api/users/:id/instructor-status
+Actualiza el estado de un instructor. Solo aplicable para usuarios con rol 'Instructor'. Requiere el siguiente campo:
+- estadoInstructor: Estado del instructor (pendiente, aprobado)
+
 #### DELETE /api/users/:id
 Elimina un usuario específico.
 

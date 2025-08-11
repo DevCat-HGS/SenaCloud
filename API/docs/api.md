@@ -51,6 +51,17 @@ Crea un nuevo usuario. Requiere los siguientes campos en el cuerpo de la petici�
 
 Actualiza la información de un usuario existente. Acepta los mismos campos que la creación.
 
+#### Actualizar estado de instructor
+**PUT /api/users/:id/instructor-status**
+
+Actualiza el estado de un instructor. Solo aplicable para usuarios con rol 'Instructor'. Requiere el siguiente campo en el cuerpo de la petición:
+
+```json
+{
+  "estadoInstructor": "String (pendiente, aprobado)"
+}
+```
+
 #### Eliminar un usuario
 **DELETE /api/users/:id**
 

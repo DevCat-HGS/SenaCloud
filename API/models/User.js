@@ -35,6 +35,12 @@ const userSchema = new mongoose.Schema({
     required: [true, 'El rol es requerido'],
     enum: ['Instructor', 'EquipoPedagogico', 'Coordinacion', 'Admin']
   },
+  estadoInstructor: {
+    type: String,
+    enum: ['pendiente', 'aprobado'],
+    default: 'pendiente',
+    required: function() { return this.rol === 'Instructor'; }
+  },
   createdAt: {
     type: Date,
     default: Date.now

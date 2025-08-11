@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Plus, Edit, Trash2, Search } from 'lucide-react';
 import { usuariosData } from '../constants';
+import InstructorStatusUpdater from './InstructorStatusUpdater';
+import { useSocket } from '../../Service/API/SocketContext';
+import NotificacionesService from '../../Service/Notificaciones/NotificacionesService';
 
 interface Usuario {
     id: number;
@@ -11,6 +14,7 @@ interface Usuario {
     rol?: string;
     nivel?: string;
     estado: string;
+    estadoInstructor?: string;
 }
 
 interface UsuariosProps {
@@ -29,8 +33,41 @@ export const Usuarios: React.FC<UsuariosProps> = ({ tipo }) => {
         area: '',
         rol: '',
         nivel: '',
-        estado: 'Activo'
+        estado: 'Activo',
+        estadoInstructor: 'pendiente'
     });
+    const { isConnected, on, off } = useSocket();
+    
+    useEffect(() => {
+        if (isConnected && tipo === 'instructores') {
+            // Escuchar actualizaciones de estado de instructor
+            const handleStatusUpdate = (data: { instructorId: string; status: string }) => {
+                setUsuarios(prevUsuarios => 
+                    prevUsuarios.map(usuario => 
+                        usuario.id.toString() === data.instructorId 
+                            ? { ...usuario, estadoInstructor: data.status }
+                            : usuario
+                    )
+                );
+                
+                // Crear notificación
+                NotificacionesService.crearNotificacion({
+                    tipo: 'info',
+                    mensaje: `El estado del instructor ${usuarios.find(u => u.id.toString() === data.instructorId)?.nombre || 'desconocido'} ha sido actualizado a ${data.status}`,
+                    destinatario: {
+                        id: 'admin-123', // ID del administrador o coordinador
+                        nombre: 'Administrador'
+                    }
+                });
+            };
+            
+            on('instructor-status-updated', handleStatusUpdate);
+            
+            return () => {
+                off('instructor-status-updated');
+            };
+        }
+    }, [isConnected, tipo, on, off, usuarios]);
 
     const getTitulo = () => {
         switch (tipo) {
@@ -67,7 +104,7 @@ export const Usuarios: React.FC<UsuariosProps> = ({ tipo }) => {
         }
         setIsModalOpen(false);
         setEditingUser(null);
-        setFormData({ nombre: '', email: '', especialidad: '', area: '', rol: '', nivel: '', estado: 'Activo' });
+        setFormData({ nombre: '', email: '', especialidad: '', area: '', rol: '', nivel: '', estado: 'Activo', estadoInstructor: 'pendiente' });
     };
 
     const handleEdit = (usuario: Usuario) => {
@@ -79,7 +116,8 @@ export const Usuarios: React.FC<UsuariosProps> = ({ tipo }) => {
             area: usuario.area || '',
             rol: usuario.rol || '',
             nivel: usuario.nivel || '',
-            estado: usuario.estado
+            estado: usuario.estado,
+            estadoInstructor: usuario.estadoInstructor || 'pendiente'
         });
         setIsModalOpen(true);
     };
@@ -133,6 +171,11 @@ export const Usuarios: React.FC<UsuariosProps> = ({ tipo }) => {
                                     {campo.charAt(0).toUpperCase() + campo.slice(1)}
                                 </th>
                             ))}
+                            {tipo === 'instructores' && (
+                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Estado Instructor
+                                </th>
+                            )}
                             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Estado
                             </th>
@@ -155,6 +198,24 @@ export const Usuarios: React.FC<UsuariosProps> = ({ tipo }) => {
                                         {usuario[campo as keyof Usuario] || '-'}
                                     </td>
                                 ))}
+                                {tipo === 'instructores' && (
+                                    <td className="px-6 py-4 whitespace-nowrap">
+                                        <InstructorStatusUpdater 
+                                            instructorId={usuario.id.toString()} 
+                                            initialStatus={(usuario.estadoInstructor as 'pendiente' | 'aprobado') || 'pendiente'}
+                                            onStatusChange={(newStatus) => {
+                                                // Actualizar el estado localmente
+                                                setUsuarios(prevUsuarios => 
+                                                    prevUsuarios.map(u => 
+                                                        u.id === usuario.id 
+                                                            ? { ...u, estadoInstructor: newStatus }
+                                                            : u
+                                                    )
+                                                );
+                                            }}
+                                        />
+                                    </td>
+                                )}
                                 <td className="px-6 py-4 whitespace-nowrap">
                                     <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
                                         usuario.estado === 'Activo' 
@@ -228,6 +289,19 @@ export const Usuarios: React.FC<UsuariosProps> = ({ tipo }) => {
                                         />
                                     </div>
                                 ))}
+                                {tipo === 'instructores' && (
+                                    <div>
+                                        <label className="block text-sm font-medium text-gray-700">Estado Instructor</label>
+                                        <select
+                                            value={formData.estadoInstructor}
+                                            onChange={(e) => setFormData({...formData, estadoInstructor: e.target.value})}
+                                            className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+                                        >
+                                            <option value="pendiente">Pendiente</option>
+                                            <option value="aprobado">Aprobado</option>
+                                        </select>
+                                    </div>
+                                )}
                                 <div>
                                     <label className="block text-sm font-medium text-gray-700">Estado</label>
                                     <select
@@ -246,7 +320,7 @@ export const Usuarios: React.FC<UsuariosProps> = ({ tipo }) => {
                                     onClick={() => {
                                         setIsModalOpen(false);
                                         setEditingUser(null);
-                                        setFormData({ nombre: '', email: '', especialidad: '', area: '', rol: '', nivel: '', estado: 'Activo' });
+                                        setFormData({ nombre: '', email: '', especialidad: '', area: '', rol: '', nivel: '', estado: 'Activo', estadoInstructor: 'pendiente' });
                                     }}
                                     className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50"
                                 >
@@ -265,4 +339,4 @@ export const Usuarios: React.FC<UsuariosProps> = ({ tipo }) => {
             )}
         </div>
     );
-}; 
+};

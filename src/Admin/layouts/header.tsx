@@ -1,10 +1,14 @@
 import { useTheme } from "../hooks/use-theme";
-
-import { Bell, ChevronsLeft, Moon, Search, Sun } from "lucide-react";
-
+import { ChevronsLeft, Moon, Search, Sun } from "lucide-react";
 import profileImg from "../assets/profile-image.jpg";
-
 import PropTypes from "prop-types";
+import NotificacionesRealTime from "../../components/NotificacionesRealTime";
+
+// Simulación de usuario actual - En una aplicación real, esto vendría de un contexto de autenticación
+const currentUser = {
+    id: "user-123",
+    nombre: "Usuario Ejemplo"
+};
 
 interface HeaderProps {
     collapsed: boolean;
@@ -51,9 +55,7 @@ export const Header = ({ collapsed, setCollapsed }: HeaderProps) => {
                         className="hidden dark:block"
                     />
                 </button> */}
-                <button className="btn-ghost rounded-2xl size-10">
-                    <Bell size={20} />
-                </button>
+                <NotificacionesRealTime userId={currentUser.id} />
                 <button className="size-10 overflow-hidden rounded-full">
                     <img
                         src={profileImg}

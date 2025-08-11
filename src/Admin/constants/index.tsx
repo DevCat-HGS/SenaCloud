@@ -177,9 +177,9 @@ export const overviewData = [
 // Datos de ejemplo para usuarios
 export const usuariosData = {
     instructores: [
-        { id: 1, nombre: "Juan Pérez", email: "juan@email.com", especialidad: "React", estado: "Activo" },
-        { id: 2, nombre: "María García", email: "maria@email.com", especialidad: "TypeScript", estado: "Activo" },
-        { id: 3, nombre: "Carlos López", email: "carlos@email.com", especialidad: "Node.js", estado: "Inactivo" },
+        { id: 1, nombre: "Juan Pérez", email: "juan@email.com", especialidad: "React", estado: "Activo", estadoInstructor: "aprobado" },
+        { id: 2, nombre: "María García", email: "maria@email.com", especialidad: "TypeScript", estado: "Activo", estadoInstructor: "aprobado" },
+        { id: 3, nombre: "Carlos López", email: "carlos@email.com", especialidad: "Node.js", estado: "Inactivo", estadoInstructor: "pendiente" },
     ],
     coordinadores: [
         { id: 1, nombre: "Ana Martínez", email: "ana@email.com", area: "Desarrollo Web", estado: "Activo" },

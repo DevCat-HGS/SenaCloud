@@ -8,6 +8,10 @@ const server = http.createServer(app);
 // Inicializar Socket.IO
 const socketIO = require('./sockets/io');
 const io = socketIO.init(server);
+const initSocketEvents = require('./sockets/initEvents');
+
+// Configurar eventos de Socket.IO
+initSocketEvents(io);
 
 // Middleware
 app.use(express.json());

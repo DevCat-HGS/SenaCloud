@@ -2,6 +2,7 @@ import { useState } from 'react';
 import "./index.css";
 import { Routes, Route, Link, Router } from "react-router-dom";
 import { lazy } from "react";
+import { SocketProvider } from './Service/API/SocketContext';
 const Login = lazy(() =>
   new Promise(resolve => setTimeout(resolve, 500)).then(() => import("./User/Login"))
 );
@@ -26,8 +27,9 @@ function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <Suspense fallback={<Loader />}>
-      <Routes>
+    <SocketProvider>
+      <Suspense fallback={<Loader />}>
+        <Routes>
         <Route
           path="/"
           element={
@@ -591,8 +593,9 @@ function App() {
           <Route path="ajustes" element={<AjustesPage />} />
         </Route>
         <Route path="*" element={<NotFound />} />
-      </Routes>
-    </Suspense>
+        </Routes>
+      </Suspense>
+    </SocketProvider>
   );
 }
 
