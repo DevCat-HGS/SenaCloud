@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+  # Frontend React
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - api
+    networks:
+      - senacloud-network
+    restart: unless-stopped
+    container_name: senacloud-frontend
+
+  # API Node.js
+  api:
+    build:
+      context: ./API
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - MONGO_URI=${MONGO_URI:-mongodb://mongo:27017/senacloud}
+    depends_on:
+      - mongo
+    networks:
+      - senacloud-network
+    restart: unless-stopped
+    container_name: senacloud-api
+    volumes:
+      - api-uploads:/app/uploads
+
+  # MongoDB
+  mongo:
+    image: mongo:6.0-jammy
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_ROOT_USERNAME:-admin}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ROOT_PASSWORD:-password123}
+      - MONGO_INITDB_DATABASE=senacloud
+    volumes:
+      - mongo-data:/data/db
+      - mongo-config:/data/configdb
+    networks:
+      - senacloud-network
+    restart: unless-stopped
+    container_name: senacloud-mongo
+
+# Volúmenes persistentes
+volumes:
+  mongo-data:
+    driver: local
+  mongo-config:
+    driver: local
+  api-uploads:
+    driver: local
+
+# Red personalizada
+networks:
+  senacloud-network:
+    driver: bridge

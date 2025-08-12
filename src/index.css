@@ -7,6 +7,12 @@
   cursor: url('https://api-img-hgs.netlify.app/img/cursor.png'), auto !important;
 }
 
+/* Asegurar que las imágenes estén por debajo del header y anuncios */
+img {
+  z-index: 10;
+  position: relative;
+}
+
 /* Scroll Animation */
 @keyframes scroll {
   0% {

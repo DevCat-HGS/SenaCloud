@@ -10,7 +10,7 @@
       "resolveJsonModule": true,
       "isolatedModules": true,
       "jsx": "react-jsx",
-      "jsxImportSource": "bippy/dist",
+      "jsxImportSource": "react",
       "strict": true,
       "noFallthroughCasesInSwitch": true,
       "noEmit": true

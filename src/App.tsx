@@ -36,7 +36,7 @@ function App() {
             <div className="min-h-screen bg-white relative">
               <SupportButton />
               {/* Top Banner */}
-              <div className="bg-yellow-300 border-b border-gray-200">
+              <div className="bg-yellow-300 border-b border-gray-200 relative z-50">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 text-center">
                   <p className="text-sm text-gray-900">
                     SenaCloud se encuentra aun en desarrollo, Se estan trabajando en la primera version de la plataforma, se Estima un Lanzamiento en{' '}
@@ -46,7 +46,7 @@ function App() {
               </div>
 
               {/* Header */}
-              <header className="bg-white border-4 border-green-200 sticky top-5 z-100 rounded-2xl shadow-lg transition-all mx-4">
+              <header className="bg-white border-4 border-green-200 sticky top-5 z-40 rounded-2xl shadow-lg transition-all mx-4">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                   <div className="flex items-center justify-between h-16">
                     {/* Logo */}
@@ -60,24 +60,24 @@ function App() {
                     </div>
 
                     {/* Navigation */}
-                    <nav className="hidden lg:flex items-center space-x-8">
-                      <div className="relative group">
-                        <button className="flex items-center text-gray-700 hover:text-green-600 font-medium transition-colors">
-                          Funcionalidades
-                          <svg className="w-4 h-4 ml-1 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                          </svg>
-                        </button>
-                      </div>
+                      <nav className="hidden lg:flex items-center space-x-8">
+                        <div className="relative group">
+                          <button className="flex items-center text-gray-700 hover:text-green-600 font-medium transition-colors">
+                            Manual de Usuario
+                            <svg className="w-4 h-4 ml-1 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                            </svg>
+                          </button>
+                        </div>
 
-                      <div className="relative group">
-                        <button className="flex items-center text-gray-700 hover:text-green-600 font-medium transition-colors">
-                          Eventos
-                          <svg className="w-4 h-4 ml-1 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                          </svg>
-                        </button>
-                      </div>
+                        <div className="relative group">
+                          <button className="flex items-center text-gray-700 hover:text-green-600 font-medium transition-colors">
+                            Eventos
+                            <svg className="w-4 h-4 ml-1 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                            </svg>
+                          </button>
+                        </div>
 
                       <div className="relative group">
                         <button className="flex items-center text-gray-700 hover:text-green-600 font-medium transition-colors">
@@ -88,9 +88,6 @@ function App() {
                         </button>
                       </div>
 
-                      <a href="#" className="text-gray-700 hover:text-green-600 font-medium transition-colors">
-                        Donaciones
-                      </a>
                     </nav>
 
                     {/* Right Side Actions */}
@@ -129,10 +126,9 @@ function App() {
                         </svg>
                       </button>
                       <div className="space-y-4">
-                        <a href="#" className="block text-gray-700 hover:text-green-600 font-medium">Funcionalidades</a>
+                        <a href="#" className="block text-gray-700 hover:text-green-600 font-medium">Manual de usuario</a>
                         <a href="#" className="block text-gray-700 hover:text-green-600 font-medium">Eventos</a>
                         <a href="#" className="block text-gray-700 hover:text-green-600 font-medium">Gestion de Ambientes</a>
-                        <a href="#" className="block text-gray-700 hover:text-green-600 font-medium">Donaciones</a>
                         <Link to="/login" className="block text-gray-700 hover:text-green-600 font-medium">Iniciar sesión</Link>
                         <Link to="/register" className="block text-gray-700 hover:text-green-600 font-medium">Registrarse</Link>
                       </div>

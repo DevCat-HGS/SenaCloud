@@ -52,3 +52,9 @@ SENA Cloud es una aplicación web integral diseñada para optimizar la organizac
 - Administración de actividades, eventos y reportes
 - Notificaciones en tiempo real con Socket.io
 - Generación de reportes(Excel)
+
+### 🤝 Contributors
+
+See our rockstar contributors :smile:
+
+[![SENA Cloud Contributors](https://contrib.rocks/image?repo=DevCat-HGS/SenaCloud)](https://github.com/DevCat-HGS/SenaCloud/graphs/contributors)
