@@ -66,6 +66,9 @@ export default function Login() {
       
       // Redirigir según el rol
       switch (user.rol) {
+        case 'SuperAdmin':
+          navigate('/SuperAdmin');
+          break;
         case 'Admin':
           navigate('/Admin');
           break;

@@ -582,6 +582,23 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/acceso-denegado" element={<AccessDenied />} />
+        <Route path="/SuperAdmin" element={<ProtectedRoute allowedRoles={['SuperAdmin']}><Admin /></ProtectedRoute>}>
+          <Route index element={<DashboardPage />} />
+          <Route path="analisis" element={<AnalisisPage />} />
+          <Route path="reportes">
+            <Route path="excel" element={<ReportesExcelPage />} />
+          </Route>
+          <Route path="usuarios">
+            <Route path="instructores" element={<Usuarios tipo="instructores" />} />
+            <Route path="coordinadores" element={<Usuarios tipo="coordinadores" />} />
+            <Route path="equipo-pedagogico" element={<Usuarios tipo="equipoPedagogico" />} />
+            <Route path="administradores" element={<Usuarios tipo="administradores" />} />
+            <Route path="superadmins" element={<Usuarios tipo="administradores" />} />
+          </Route>
+          <Route path="actividades" element={<Actividades />} />
+          <Route path="eventos" element={<Eventos />} />
+          <Route path="ajustes" element={<AjustesPage />} />
+        </Route>
         <Route path="/Admin" element={<ProtectedRoute allowedRoles={['Admin', 'Coordinacion']}><Admin /></ProtectedRoute>}>
           <Route index element={<DashboardPage />} />
           <Route path="analisis" element={<AnalisisPage />} />

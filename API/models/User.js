@@ -40,7 +40,7 @@ const userSchema = new mongoose.Schema({
   rol: {
     type: String,
     required: [true, 'El rol es requerido'],
-    enum: ['Instructor', 'EquipoPedagogico', 'Coordinacion', 'Admin']
+    enum: ['Instructor', 'EquipoPedagogico', 'Coordinacion', 'Admin', 'SuperAdmin']
   },
   estadoInstructor: {
     type: String,
