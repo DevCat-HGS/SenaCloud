@@ -22,10 +22,7 @@ export default function Login() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.correo.endsWith('sena.edu.co')) {
-      setError('El correo debe ser institucional (@sena.edu.co)');
-      return;
-    }
+    // Se eliminó la validación de correo institucional
     setConfirm(true);
   };
 
@@ -45,8 +42,8 @@ export default function Login() {
           <h2 className="text-3xl font-extrabold mb-6 text-center text-green-700 drop-shadow-lg tracking-tight">Iniciar Sesión</h2>
           <form onSubmit={handleSubmit} className="w-full flex flex-col items-center">
             <div className="mb-4 w-full">
-              <label className="block mb-1 font-semibold text-green-700">Correo institucional</label>
-              <input name="correo" type="email" value={form.correo} onChange={handleChange} required placeholder="usuario@sena.edu.co" className="w-full px-4 py-2 rounded-xl border border-green-200 focus:outline-none focus:ring-4 focus:ring-green-400/40 bg-white/80 shadow-inner transition-all duration-200" />
+              <label className="block mb-1 font-semibold text-green-700">Correo electrónico</label>
+              <input name="correo" type="email" value={form.correo} onChange={handleChange} required placeholder="ejemplo@correo.com" className="w-full px-4 py-2 rounded-xl border border-green-200 focus:outline-none focus:ring-4 focus:ring-green-400/40 bg-white/80 shadow-inner transition-all duration-200" />
             </div>
             <div className="mb-4 w-full relative">
               <label className="block mb-1 font-semibold text-green-700">Contraseña</label>
