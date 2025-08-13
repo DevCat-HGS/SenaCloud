@@ -8,7 +8,7 @@ const SupportButton = () => {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className="fixed bottom-6 left-6 z-50">
       <button
         onClick={() => setIsModalOpen(!isModalOpen)}
         className="w-14 h-14 rounded-full border-2 border-green-500 bg-white flex items-center justify-center hover:scale-110 transition-transform duration-200 shadow-lg"
@@ -22,7 +22,7 @@ const SupportButton = () => {
       </button>
 
       {isModalOpen && (
-        <div className="absolute bottom-20 right-0 w-72 bg-white rounded-xl shadow-xl border border-green-100 p-4">
+        <div className="absolute bottom-20 left-0 w-72 bg-white rounded-xl shadow-xl border border-green-100 p-4">
           <div className="text-center">
             <h3 className="text-lg font-semibold text-gray-800 mb-2">SenaCloud</h3>
             <p className="text-gray-600 text-sm mb-4">Somos Soporte SenaCloud, tienes algun problema con nuestra plataforma?</p>
