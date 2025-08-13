@@ -3,7 +3,7 @@ import { io, Socket } from 'socket.io-client';
 class SocketService {
     private socket: Socket | null = null;
     private static instance: SocketService | null = null;
-    private readonly API_URL = 'http://localhost:3000'; // URL del servidor backend
+    private readonly API_URL = 'http://localhost:3001'; // URL del servidor backend
 
     private constructor() {
         // Constructor privado para implementar el patrón Singleton

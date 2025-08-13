@@ -27,8 +27,15 @@ const userSchema = new mongoose.Schema({
     unique: true,
     match: [/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/, 'Formato de correo inválido']
   },
+  password: {
+    type: String,
+    required: [true, 'La contraseña es requerida'],
+    minlength: [6, 'La contraseña debe tener al menos 6 caracteres']
+  },
   etiquetas: [{
-    type: String
+    type: String,
+    // Ya no se categorizan las etiquetas por nivel académico, profesión o especialidad
+    // Ahora son etiquetas generales que el usuario puede agregar libremente
   }],
   rol: {
     type: String,

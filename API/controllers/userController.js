@@ -47,6 +47,13 @@ exports.updateUser = async (req, res) => {
       return res.status(404).json({ message: 'Usuario no encontrado' });
     }
     
+    // Si se están actualizando etiquetas, reemplazar completamente el array
+    if (req.body.etiquetas) {
+      user.etiquetas = req.body.etiquetas;
+      delete req.body.etiquetas;
+    }
+    
+    // Actualizar el resto de campos
     Object.assign(user, req.body);
     await user.save();
     

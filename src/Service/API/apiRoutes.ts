@@ -4,12 +4,19 @@
  */
 
 // URL base de la API
-export const API_URL = 'http://localhost:3000';
+export const API_URL = 'http://localhost:3001';
 
 // Rutas de estado y documentación
 export const STATUS_ROUTES = {
   STATUS: '/',
   DOCUMENTATION: '/doc'
+};
+
+// Rutas de autenticación
+export const AUTH_ROUTES = {
+  LOGIN: '/api/auth/login',
+  REGISTER: '/api/auth/register',
+  PROFILE: '/api/auth/profile'
 };
 
 // Rutas de usuarios
@@ -19,7 +26,8 @@ export const USER_ROUTES = {
   CREATE: '/api/users',
   UPDATE: (id: string) => `/api/users/${id}`,
   DELETE: (id: string) => `/api/users/${id}`,
-  UPDATE_INSTRUCTOR_STATUS: (id: string) => `/api/users/${id}/instructor-status`
+  UPDATE_INSTRUCTOR_STATUS: (id: string) => `/api/users/${id}/instructor-status`,
+  UPDATE_TAGS: (id: string) => `/api/users/${id}/etiquetas`
 };
 
 // Rutas de notificaciones

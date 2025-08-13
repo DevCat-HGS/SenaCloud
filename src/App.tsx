@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import "./index.css";
-import { Routes, Route, Link, Router } from "react-router-dom";
+import { Routes, Route, Link, Navigate, useLocation } from "react-router-dom";
 import { lazy } from "react";
 import { SocketProvider } from './Service/API/SocketContext';
+import { AuthProvider, useAuth } from './Service/API/AuthContext';
 const Login = lazy(() =>
   new Promise(resolve => setTimeout(resolve, 500)).then(() => import("./User/Login"))
 );
@@ -10,13 +11,20 @@ const Register = lazy(() =>
   new Promise(resolve => setTimeout(resolve, 500)).then(() => import("./User/Register"))
 );
 import Admin from './Admin/Dashboard.tsx';
+import InstructorDashboard from './Instructor/Dashboard.tsx';
 import { Usuarios } from './Admin/components/Usuarios';
 import { Actividades } from './Admin/components/Actividades';
 import { Eventos } from './Admin/components/Eventos';
+import InstructorDashboardPage from './Instructor/routes/dashboard/page';
+import InstructorGuidesPage from './Instructor/routes/guides/page';
+import InstructorActivitiesPage from './Instructor/routes/activities/page';
+import InstructorEventsPage from './Instructor/routes/events/page';
 import SupportButton from './components/SupportButton';
 import NotFound from './404';
+import AccessDenied from './AccessDenied';
 import Loader from './loader';
 import { Suspense } from 'react';
+import ProtectedRoute from './components/ProtectedRoute';
 
 const DashboardPage = lazy(() => new Promise(resolve => setTimeout(resolve, 500)).then(() => import('./Admin/routes/dashboard/page')));
 const AnalisisPage = lazy(() => new Promise(resolve => setTimeout(resolve, 500)).then(() => import('./Admin/routes/analisis/page')));
@@ -27,7 +35,8 @@ function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <SocketProvider>
+    <AuthProvider>
+      <SocketProvider>
       <Suspense fallback={<Loader />}>
         <Routes>
         <Route
@@ -572,26 +581,62 @@ function App() {
         /> 
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/Admin" element={<Admin />}>
+        <Route path="/acceso-denegado" element={<AccessDenied />} />
+        <Route path="/Admin" element={<ProtectedRoute allowedRoles={['Admin', 'Coordinacion']}><Admin /></ProtectedRoute>}>
           <Route index element={<DashboardPage />} />
           <Route path="analisis" element={<AnalisisPage />} />
           <Route path="reportes">
             <Route path="excel" element={<ReportesExcelPage />} />
           </Route>
           <Route path="usuarios">
-            <Route path="instructores" element={<Usuarios tipo="instructores" />} />
-            <Route path="coordinadores" element={<Usuarios tipo="coordinadores" />} />
-            <Route path="equipo-pedagogico" element={<Usuarios tipo="equipoPedagogico" />} />
-            <Route path="administradores" element={<Usuarios tipo="administradores" />} />
+            <Route path="instructores" element={
+              <ProtectedRoute allowedRoles={['Admin', 'Coordinacion']}>
+                <Usuarios tipo="instructores" />
+              </ProtectedRoute>
+            } />
+            <Route path="coordinadores" element={
+              <ProtectedRoute allowedRoles={['Admin']}>
+                <Usuarios tipo="coordinadores" />
+              </ProtectedRoute>
+            } />
+            <Route path="equipo-pedagogico" element={
+              <ProtectedRoute allowedRoles={['Admin', 'Coordinacion']}>
+                <Usuarios tipo="equipoPedagogico" />
+              </ProtectedRoute>
+            } />
+            <Route path="administradores" element={
+              <ProtectedRoute allowedRoles={['Admin']}>
+                <Usuarios tipo="administradores" />
+              </ProtectedRoute>
+            } />
           </Route>
-          <Route path="actividades" element={<Actividades />} />
-          <Route path="eventos" element={<Eventos />} />
-          <Route path="ajustes" element={<AjustesPage />} />
+          <Route path="actividades" element={
+            <ProtectedRoute allowedRoles={['Admin', 'Coordinacion', 'EquipoPedagogico']}>
+              <Actividades />
+            </ProtectedRoute>
+          } />
+          <Route path="eventos" element={
+            <ProtectedRoute allowedRoles={['Admin', 'Coordinacion', 'EquipoPedagogico']}>
+              <Eventos />
+            </ProtectedRoute>
+          } />
+          <Route path="ajustes" element={
+            <ProtectedRoute allowedRoles={['Admin']}>
+              <AjustesPage />
+            </ProtectedRoute>
+          } />
+        </Route>
+        <Route path="/Instructor" element={<ProtectedRoute allowedRoles={['Instructor']}><InstructorDashboard /></ProtectedRoute>}>
+          <Route index element={<InstructorDashboardPage />} />
+          <Route path="guias" element={<InstructorGuidesPage />} />
+          <Route path="actividades" element={<InstructorActivitiesPage />} />
+          <Route path="eventos" element={<InstructorEventsPage />} />
         </Route>
         <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
     </SocketProvider>
+    </AuthProvider>
   );
 }
 

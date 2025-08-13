@@ -15,6 +15,7 @@ export interface User {
   isInstructor: boolean;
   instructorStatus?: 'active' | 'inactive';
   status: 'active' | 'inactive';
+  etiquetas?: string[];
   createdAt: string;
   updatedAt: string;
 }
@@ -34,6 +35,7 @@ export interface UpdateUserDto {
   role?: string;
   isInstructor?: boolean;
   status?: 'active' | 'inactive';
+  etiquetas?: string[];
 }
 
 // Clase para el servicio de usuarios
@@ -109,6 +111,21 @@ export class UserService {
   ): Promise<User> {
     return httpService.patch<User>(USER_ROUTES.UPDATE_INSTRUCTOR_STATUS(id), {
       body: { instructorStatus: status },
+    });
+  }
+
+  /**
+   * Actualiza las etiquetas de un usuario
+   * @param id ID del usuario
+   * @param etiquetas Nuevas etiquetas
+   * @returns Promesa con el usuario actualizado
+   */
+  public async updateUserTags(
+    id: string,
+    etiquetas: string[]
+  ): Promise<User> {
+    return httpService.put<User>(USER_ROUTES.UPDATE_TAGS(id), {
+      body: { etiquetas },
     });
   }
 }

@@ -4,6 +4,7 @@ import { lazy, Suspense } from 'react';
 import Loader from '../loader';
 import ProfessionTags from './ProfessionTags';
 import RegistrationConfirmation from './RegistrationConfirmation';
+import { authService } from '../Service/API/authService';
 
 const DashboardPage = lazy(() => new Promise(resolve => setTimeout(resolve, 2000)).then(() => import('../Admin/routes/dashboard/page')));
 
@@ -47,12 +48,47 @@ export default function Register() {
     }
   };
 
-  const handleConfirm = () => {
-    setRegistroEnviado(true);
-    // Después de 3 segundos, redirigir al login
-    setTimeout(() => {
-      navigate('/login');
-    }, 3000);
+  const handleConfirm = async () => {
+    try {
+      // Crear objeto con los datos del formulario para el registro
+      const userData = {
+        nombre: form.nombreCompleto,
+        tipoDocumento: form.tipoDocumento,
+        documento: form.numeroDocumento,
+        correoPersonal: form.correo,
+        correoInstitucional: `${form.numeroDocumento}@sena.edu.co`, // Generamos un correo institucional provisional
+        password: form.password,
+        rol: 'Instructor', // Asignamos el rol de Instructor por defecto
+        etiquetas: etiquetas, // Asignamos las etiquetas seleccionadas
+        // El estado de instructor será 'pendiente' por defecto según el modelo
+      };
+
+      // Realizar la petición al backend para registrar al usuario
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3001'}/api/auth/register`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(userData)
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Error al registrar usuario');
+      }
+
+      // Si todo va bien, mostrar confirmación
+      setRegistroEnviado(true);
+      
+      // Después de 3 segundos, redirigir al login
+      setTimeout(() => {
+        navigate('/login');
+      }, 3000);
+    } catch (error) {
+      console.error('Error en registro:', error);
+      setError(error instanceof Error ? error.message : 'Error al registrar usuario');
+      setConfirm(false);
+    }
   };
 
   return (

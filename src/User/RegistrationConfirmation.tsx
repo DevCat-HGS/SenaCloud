@@ -41,8 +41,9 @@ const RegistrationConfirmation: React.FC<RegistrationConfirmationProps> = ({ red
       </div>
       <h3 className="text-2xl font-bold text-green-700 mb-2">¡Solicitud enviada!</h3>
       <p className="text-center text-green-600 mb-6">
-        Su solicitud de registro fue enviada correctamente.<br/>
-        Por favor espere confirmación.
+        Su solicitud de registro como instructor fue enviada correctamente.<br/>
+        Un coordinador o administrador revisará su solicitud y aprobará su cuenta.<br/>
+        Por favor espere la confirmación por correo electrónico.
       </p>
       <div className="w-full bg-gray-200 rounded-full h-2 mb-4">
         <div 

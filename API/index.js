@@ -41,13 +41,23 @@ const notificationRoutes = require('./routes/notifications');
 const activityRoutes = require('./routes/activities');
 const eventRoutes = require('./routes/events');
 const guideRoutes = require('./routes/guides');
+const authRoutes = require('./routes/auth');
 
-// Conectar a MongoDB
-connectDB();
+// Conectar a MongoDB de forma asíncrona
+(async () => {
+  try {
+    await connectDB();
+    console.log('✅ Conexión a MongoDB establecida');
+  } catch (error) {
+    console.error('⚠️ Error al conectar a MongoDB, pero el servidor continuará funcionando');
+    console.error(error);
+  }
+})();
 
 // Usar rutas
 app.use('/', statusRoutes);
 app.use('/doc', docRoutes);
+app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/notifications', notificationRoutes);
 app.use('/api/activities', activityRoutes);
@@ -383,7 +393,7 @@ app.use((err, req, res, next) => {
   });
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 server.listen(PORT, () => {
   console.log(`🚀 Servidor de SenaCloud API corriendo en el puerto ${PORT}`);
   console.log(`📊 Estado de la API: http://localhost:${PORT}/`);
