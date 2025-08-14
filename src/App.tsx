@@ -13,6 +13,7 @@ const Register = lazy(() =>
 import Admin from './Admin/Dashboard.tsx';
 import InstructorDashboard from './Instructor/Dashboard.tsx';
 import { Usuarios } from './Admin/components/Usuarios';
+import InstructoresRoutes from './Admin/routes/instructores';
 import { Actividades } from './Admin/components/Actividades';
 import { Eventos } from './Admin/components/Eventos';
 import InstructorDashboardPage from './Instructor/routes/dashboard/page';
@@ -589,7 +590,7 @@ function App() {
             <Route path="excel" element={<ReportesExcelPage />} />
           </Route>
           <Route path="usuarios">
-            <Route path="instructores" element={<Usuarios tipo="instructores" />} />
+            <Route path="instructores/*" element={<InstructoresRoutes />} />
             <Route path="coordinadores" element={<Usuarios tipo="coordinadores" />} />
             <Route path="equipo-pedagogico" element={<Usuarios tipo="equipoPedagogico" />} />
             <Route path="administradores" element={<Usuarios tipo="administradores" />} />
@@ -606,9 +607,9 @@ function App() {
             <Route path="excel" element={<ReportesExcelPage />} />
           </Route>
           <Route path="usuarios">
-            <Route path="instructores" element={
+            <Route path="instructores/*" element={
               <ProtectedRoute allowedRoles={['Admin', 'Coordinacion']}>
-                <Usuarios tipo="instructores" />
+                <InstructoresRoutes />
               </ProtectedRoute>
             } />
             <Route path="coordinadores" element={

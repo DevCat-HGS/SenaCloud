@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useSocket } from '../../Service/API/SocketContext';
+import { Socket } from 'socket.io-client';
 
 interface InstructorStatusUpdaterProps {
   instructorId: string;
@@ -14,11 +15,32 @@ const InstructorStatusUpdater: React.FC<InstructorStatusUpdaterProps> = ({
 }) => {
   const [status, setStatus] = useState<'pendiente' | 'aprobado'>(initialStatus);
   const [isUpdating, setIsUpdating] = useState(false);
-  const { emit, on, off, isConnected } = useSocket();
+  const { connectToNamespace, isConnected } = useSocket();
+  const instructorSocketRef = useRef<Socket | null>(null);
 
+  // Conectar al namespace de instructores
   useEffect(() => {
-    // Escuchar actualizaciones de estado de instructor
     if (isConnected) {
+      instructorSocketRef.current = connectToNamespace('/instructors');
+      
+      // Configurar eventos una vez conectado
+      instructorSocketRef.current.on('connect', () => {
+        console.log('Conectado al namespace de instructores para actualizar estado');
+      });
+
+      // Limpiar al desmontar
+      return () => {
+        if (instructorSocketRef.current) {
+          instructorSocketRef.current.disconnect();
+          instructorSocketRef.current = null;
+        }
+      };
+    }
+  }, [isConnected, connectToNamespace]);
+
+  // Escuchar actualizaciones de estado de instructor
+  useEffect(() => {
+    if (instructorSocketRef.current) {
       const handleStatusUpdate = (data: { instructorId: string; status: 'pendiente' | 'aprobado' }) => {
         if (data.instructorId === instructorId) {
           setStatus(data.status);
@@ -29,14 +51,14 @@ const InstructorStatusUpdater: React.FC<InstructorStatusUpdaterProps> = ({
       };
 
       // Suscribirse al evento de actualización de estado
-      on('instructor-status-updated', handleStatusUpdate);
+      instructorSocketRef.current.on('instructor-status-updated', handleStatusUpdate);
 
       // Limpiar al desmontar
       return () => {
-        off('instructor-status-updated');
+        instructorSocketRef.current?.off('instructor-status-updated');
       };
     }
-  }, [instructorId, isConnected, on, off, onStatusChange]);
+  }, [instructorId, onStatusChange, instructorSocketRef.current]);
 
   const updateStatus = async (newStatus: 'pendiente' | 'aprobado') => {
     if (newStatus === status) return;
@@ -44,24 +66,46 @@ const InstructorStatusUpdater: React.FC<InstructorStatusUpdaterProps> = ({
     setIsUpdating(true);
     
     try {
-      // Emitir evento para actualizar el estado
-      emit('update-instructor-status', {
-        instructorId,
-        status: newStatus
-      });
-      
-      // En una aplicación real, también se haría una llamada a la API REST
-      // para asegurar que el cambio se guarde en la base de datos
-      const response = await fetch(`/api/users/${instructorId}/instructor-status`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ estadoInstructor: newStatus })
-      });
-      
-      if (!response.ok) {
-        throw new Error('Error al actualizar el estado del instructor');
+      if (isConnected && instructorSocketRef.current) {
+        // Crear una promesa para manejar la respuesta del socket
+        let timeoutId: ReturnType<typeof setTimeout>;
+        
+        await new Promise<void>((resolve, reject) => {
+          // Función para manejar la respuesta exitosa
+          const handleSuccess = (data: any) => {
+            instructorSocketRef.current?.off('status-update-success', handleSuccess);
+            instructorSocketRef.current?.off('error', handleError);
+            clearTimeout(timeoutId);
+            resolve();
+          };
+          
+          // Función para manejar errores
+          const handleError = (error: any) => {
+            instructorSocketRef.current?.off('status-update-success', handleSuccess);
+            instructorSocketRef.current?.off('error', handleError);
+            clearTimeout(timeoutId);
+            reject(new Error(error.message || 'Error al actualizar el estado del instructor'));
+          };
+          
+          // Registrar listeners
+          instructorSocketRef.current?.on('status-update-success', handleSuccess);
+          instructorSocketRef.current?.on('error', handleError);
+          
+          // Emitir evento para actualizar el estado
+          instructorSocketRef.current?.emit('update-instructor-status', {
+            instructorId,
+            status: newStatus
+          });
+          
+          // Establecer un timeout por si no hay respuesta
+          timeoutId = setTimeout(() => {
+            instructorSocketRef.current?.off('status-update-success', handleSuccess);
+            instructorSocketRef.current?.off('error', handleError);
+            reject(new Error('Timeout al actualizar el estado del instructor'));
+          }, 5000); // 5 segundos de timeout
+        });
+      } else {
+        throw new Error('No hay conexión con el servidor');
       }
       
       // Actualizar estado local
